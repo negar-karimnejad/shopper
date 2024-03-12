@@ -4,7 +4,7 @@ import Navbar from "../components/navbar/Navbar";
 
 function AppLayout() {
   return (
-    <div className="flex flex-col justify-between h-screen">
+    <div className="flex h-screen flex-col justify-between font-medium text-slate-700 dark:text-slate-200">
       <div>
         <Navbar />
         <div className="container">
