@@ -6,7 +6,7 @@ function Logo() {
       <img
         className="h-12 w-12 md:h-14 md:w-14"
         src="images/logo_big.png"
-        alt=""
+        alt="logo"
       />
       <h1 className="text-3xl font-semibold uppercase md:text-4xl">Shopper</h1>
     </Link>
