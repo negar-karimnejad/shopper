@@ -6,12 +6,12 @@ import DarkModeButton from "../DarkModeButton";
 
 function Navbar() {
   return (
-    <nav className=" bg-slate-50 text-slate-800 dark:text-stone-200 dark:bg-slate-800">
+    <nav className=" bg-slate-50 text-slate-800 dark:text-slate-200 dark:bg-slate-800">
       <div className="container flex justify-between items-center">
         <Logo />
         <NavLinks />
         <UserLinks />
-        {/* <DarkModeButton /> */}
+        <DarkModeButton />
       </div>
     </nav>
   );
