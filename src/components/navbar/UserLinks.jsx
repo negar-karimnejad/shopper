@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { HiBars3, HiOutlineShoppingCart, HiXMark } from "react-icons/hi2";
 import { Link } from "react-router-dom";
 

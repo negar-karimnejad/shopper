@@ -1,6 +1,14 @@
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import AppLayout from "./pages/AppLayout";
+import Kids from "./pages/Kids";
+import Women from "./pages/Women";
+import Men from "./pages/Men";
+import Login from "./pages/Login";
+import Product from "./pages/Product";
+import Cart from "./pages/Cart";
 
 function App() {
-
   return (
     <BrowserRouter>
       <Routes>
