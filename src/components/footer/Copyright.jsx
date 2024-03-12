@@ -1,4 +1,4 @@
-import Divide from "../Divide";
+import Divide from '../Divide';
 
 function Copyright() {
   const date = new Date().getFullYear();
@@ -6,7 +6,7 @@ function Copyright() {
   return (
     <div className="w-full text-center">
       <Divide />
-      <div className="py-3">Copyright &copy; {date} - All Right Reserved.</div>
+      <div className="pb-3">Copyright &copy; {date} - All Right Reserved.</div>
     </div>
   );
 }

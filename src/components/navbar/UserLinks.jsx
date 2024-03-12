@@ -4,14 +4,15 @@ import Button from '../Button';
 import NavShoppingCartIcon from './NavShoppingCartIcon';
 import DarkModeButton from '../DarkModeButton';
 import NavLinks from './NavLinks';
+import Divide from '../Divide';
 
 function UserLinks() {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
       <div className="hidden items-center gap-4 lg:flex">
-        <NavShoppingCartIcon />
         <DarkModeButton />
+        <NavShoppingCartIcon />
         <Button>Login</Button>
       </div>
       <div
@@ -19,9 +20,16 @@ function UserLinks() {
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {isOpen ? <HiXMark size={30} /> : <HiBars3 size={35} />}
-        <div className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-          <NavLinks />
+        <div className="absolute right-2 z-10 mt-2 w-48 origin-top-right rounded-md bg-white p-4 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none dark:bg-slate-800">
           <DarkModeButton />
+          <Divide />
+          <ul className="mb-5 flex flex-col items-center gap-1 lg:hidden">
+            <NavLinks />
+          </ul>
+          <div className="flex flex-col gap-2">
+            <Button varient="secondary">Login</Button>
+            <Button>Register</Button>
+          </div>
         </div>
       </div>
     </>

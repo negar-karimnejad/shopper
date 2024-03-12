@@ -7,7 +7,9 @@ function Navbar() {
     <nav className="bg-white py-2 dark:bg-slate-800">
       <div className="container flex items-center justify-between">
         <Logo />
-        <NavLinks />
+        <ul className="hidden items-center gap-5 lg:flex">
+          <NavLinks />
+        </ul>
         <UserLinks />
       </div>
     </nav>
