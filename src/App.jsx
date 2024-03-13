@@ -7,18 +7,22 @@ import Men from "./pages/Men";
 import Login from "./pages/Login";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
+import Homepage from "./pages/Homepage";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route element={<AppLayout />}>
+          <Route path="/" element={<Homepage />} />
           <Route path="kids" element={<Kids />} />
           <Route path="women" element={<Women />} />
           <Route path="men" element={<Men />} />
           <Route path="login" element={<Login />} />
           <Route path="product/:id" element={<Product />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>
