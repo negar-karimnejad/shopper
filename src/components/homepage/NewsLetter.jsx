@@ -15,7 +15,7 @@ function NewsLetter() {
             >
               Subscribe to our newsletter and stay updated.
             </label>
-            <div className="mt-5 flex rounded-full border-2 bg-white pl-5 dark:border-none">
+            <div className="mt-5 flex rounded-full border-2 bg-white pl-5">
               <input
                 className="text-slate-600 outline-none"
                 type="text"

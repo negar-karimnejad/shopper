@@ -11,9 +11,9 @@ function Button({
   const styles = {
     primary: base,
     secondary:
-      "w-full text-md hover:bg-rose-500' flex items-center justify-center rounded-full border-none bg-rose-600 px-6 py-2 font-semibold text-white transition-all",
+      "w-full text-md hover:bg-rose-500 flex items-center justify-center rounded-full border-none bg-rose-600 px-6 py-2 font-semibold text-white transition-all",
     black:
-      'w-full rounded-full py-2 px-6 font-semibold text-md transition-all bg-black text-white hover:bg-black/90',
+      'w-full rounded-full py-3 px-7 font-semibold text-md transition-all bg-black text-white hover:bg-black/90',
   };
 
   return (
