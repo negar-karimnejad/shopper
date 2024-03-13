@@ -41,7 +41,9 @@ function MobileMenu() {
             onClick={() => setIsOpen(false)}
           >
             <Button onClick={() => navigate('/login')}>Login</Button>
-            <Button variant="secondary">Register</Button>
+            <Button variant="secondary" onClick={() => navigate('/register')}>
+              Register
+            </Button>
           </footer>
         </div>
       )}
