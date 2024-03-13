@@ -5,7 +5,7 @@ import Socials from './Socials';
 
 function Footer() {
   return (
-    <div className="mt-20 flex flex-col items-center justify-center gap-8">
+    <div className="pt-20 flex flex-col items-center justify-center gap-8 bg-white dark:bg-slate-900">
       <Logo />
       <FooterLinks />
       <Socials />

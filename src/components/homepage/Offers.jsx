@@ -3,7 +3,7 @@ import Button from '../Button';
 function Offers() {
   return (
     <div className="container mt-32">
-      <div className="bg-gradient-to-b from-rose-50 p-10">
+      <div className="bg-gradient-to-b from-rose-50 p-10 dark:from-slate-950">
         <div className="flex w-full flex-col-reverse items-center justify-between gap-10 md:flex-row">
           <div className="flex-1">
             <img
