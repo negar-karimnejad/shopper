@@ -7,9 +7,9 @@ function AppLayout() {
     <div className="flex h-screen flex-col justify-between font-medium text-slate-700 dark:text-slate-200">
       <div>
         <Navbar />
-        <div className="container">
+        {/* <div className="container"> */}
           <Outlet />
-        </div>
+        {/* </div> */}
       </div>
       <Footer />
     </div>

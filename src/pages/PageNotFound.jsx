@@ -444,7 +444,7 @@ function PageNotFound() {
           </g>
         </svg>
       </div>
-      <div className="text-md mx-auto m-10 lg:mt-16 w-48 border border-rose-600 bg-white px-6 py-2 text-center font-semibold text-rose-600 transition-all hover:bg-rose-500 hover:text-white dark:text-white">
+      <div className="text-md m-10 mx-auto w-48 border border-rose-600 bg-white px-6 py-2 text-center font-semibold text-rose-600 transition-all hover:bg-rose-500 hover:text-white dark:text-white lg:mt-16">
         <Link to="/" className=" ">
           BACK TO HOME
         </Link>
