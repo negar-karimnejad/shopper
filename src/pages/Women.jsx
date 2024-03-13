@@ -1,5 +1,7 @@
+import CollectionSection from '../components/CollectionSection';
+
 function Women() {
-  return <div>Women</div>;
+  return <CollectionSection />;
 }
 
 export default Women;

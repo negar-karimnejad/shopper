@@ -1,8 +1,7 @@
+import CollectionSection from '../components/CollectionSection';
 
 function Kids() {
-  return (
-    <div>Kids</div>
-  )
+  return <CollectionSection />;
 }
 
-export default Kids
+export default Kids;

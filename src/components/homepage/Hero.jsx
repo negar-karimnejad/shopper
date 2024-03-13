@@ -2,7 +2,7 @@ import Button from '../Button';
 
 function Hero() {
   return (
-    <div className="bg-gradient-to-b from-rose-50 max-md:py-10">
+    <div className="bg-gradient-to-b from-rose-50 dark:from-slate-950 max-md:py-10">
       <div className="container flex flex-col items-center justify-between gap-y-10 md:flex-row">
         <div className="flex-1 shrink-0 max-md:flex max-md:flex-col max-md:items-center max-md:text-center">
           <p className="mb-5 text-lg font-bold">NEW ARRIVALS ONLY</p>
