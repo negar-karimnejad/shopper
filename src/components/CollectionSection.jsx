@@ -1,7 +1,7 @@
-import Button from '../components/Button';
-import ProductCard from '../components/ProductCard';
-import ProductsFilter from '../components/ProductsFilter';
-import ProductsList from '../components/ProductsList';
+import Button from './Button';
+import ProductCard from './product/ProductCard';
+import ProductsList from './product/ProductsList';
+import ProductsFilter from './product/ProductsFilter';
 
 function CollectionSection() {
   return (

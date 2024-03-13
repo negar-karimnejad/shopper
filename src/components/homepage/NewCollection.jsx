@@ -1,5 +1,5 @@
-import ProductCard from '../ProductCard';
-import ProductsList from '../ProductsList';
+import ProductCard from '../product/ProductCard';
+import ProductsList from '../product/ProductsList';
 import SectionHeader from './SectionHeader';
 
 function NewCollection() {

@@ -1,5 +1,5 @@
-import ProductCard from '../ProductCard';
-import ProductsList from '../ProductsList';
+import ProductsList from '../product/ProductsList';
+import ProductCard from '../product/ProductCard';
 import SectionHeader from './SectionHeader';
 
 function Popular() {
