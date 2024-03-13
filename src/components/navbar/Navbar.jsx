@@ -4,7 +4,7 @@ import UserLinks from './UserLinks';
 
 function Navbar() {
   return (
-    <nav className="bg-white py-2 dark:bg-slate-800">
+    <nav className="sticky top-0 shadow-sm z-50 bg-white py-2 dark:bg-slate-800">
       <div className="container flex items-center justify-between">
         <Logo />
         <ul className="hidden items-center gap-5 lg:flex">
