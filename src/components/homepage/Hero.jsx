@@ -11,7 +11,7 @@ function Hero() {
             <br /> for everyone
           </h2>
           <div className="mt-14 w-5/6 text-lg lg:w-2/3">
-            <Button varient="secondary">
+            <Button variant="secondary">
               Latest collection <span className="text-2xl">&rarr;</span>
             </Button>
           </div>

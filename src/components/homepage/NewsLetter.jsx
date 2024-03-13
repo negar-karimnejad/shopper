@@ -9,12 +9,19 @@ function NewsLetter() {
             Get Ecclusive Offers On Your Email
           </h2>
           <form className="flex flex-col items-center">
-            <label htmlFor="" className="text-center text-sm text-slate-500">
+            <label
+              htmlFor=""
+              className="text-center text-sm text-slate-500 dark:text-slate-400"
+            >
               Subscribe to our newsletter and stay updated.
             </label>
-            <div className="mt-5 flex rounded-full border-2 pl-5 bg-white">
-              <input type="text" placeholder="Your email id" />
-              <Button varient="black">Subscribe</Button>
+            <div className="mt-5 flex rounded-full border-2 bg-white pl-5 dark:border-none">
+              <input
+                className="text-slate-600 outline-none"
+                type="text"
+                placeholder="Your email id"
+              />
+              <Button variant="black">Subscribe</Button>
             </div>
           </form>
         </div>

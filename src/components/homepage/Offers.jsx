@@ -20,7 +20,7 @@ function Offers() {
               only on best sellers products
             </p>
             <div className="w-5/6 text-lg lg:w-2/3">
-              <Button varient="secondary">Check now</Button>
+              <Button variant="secondary">Check now</Button>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@ import NavLinks from './NavLinks';
 function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
-  
+
   return (
     <div className="hidden cursor-pointer transition-all duration-500 max-lg:block">
       <div onClick={() => setIsOpen((prev) => !prev)}>
@@ -41,7 +41,7 @@ function MobileMenu() {
             onClick={() => setIsOpen(false)}
           >
             <Button onClick={() => navigate('/login')}>Login</Button>
-            <Button varient="secondary">Register</Button>
+            <Button variant="secondary">Register</Button>
           </footer>
         </div>
       )}

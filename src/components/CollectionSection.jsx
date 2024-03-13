@@ -5,7 +5,7 @@ import ProductsList from '../components/ProductsList';
 
 function CollectionSection() {
   return (
-    <div className="container mt-10">
+    <div className="container pt-10">
       <img src="images/banner_mens.png" alt="men-banner" />
       <ProductsFilter />
       <ProductsList>
