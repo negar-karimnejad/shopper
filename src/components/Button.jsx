@@ -13,6 +13,7 @@ function Button({
     secondary:
       base +
       ' bg-[#e11d48] text-white dark:text-white border-none hover:bg-[#f43f5e]',
+    black: base + ' bg-black text-white border-none hover:bg-black/90',
   };
 
   return (
