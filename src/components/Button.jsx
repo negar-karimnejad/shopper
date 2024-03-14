@@ -18,6 +18,8 @@ function Button({
       'w-full rounded-full py-3 px-7 font-semibold text-md transition-all bg-black text-white hover:bg-black/90',
     addProduct:
       'w-full text-md hover:bg-blue-500 flex items-center justify-center rounded-md border-none bg-blue-600 px-6 py-3 font-semibold text-white transition-all',
+    blackLessRound:
+      'w-full rounded-sm py-3 px-7 font-semibold text-md transition-all bg-black text-white hover:bg-black/90',
   };
 
   return (
