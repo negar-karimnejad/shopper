@@ -2,7 +2,7 @@ import { HiTrash } from 'react-icons/hi2';
 
 function ListProducts() {
   return (
-    <div className="w-full bg-slate-100 p-10 dark:bg-slate-950">
+    <div className="w-full bg-slate-100 dark:bg-slate-950 md:p-10">
       <div className="mx-auto max-w-5xl rounded-md bg-white p-10 dark:bg-slate-900">
         <h2 className="mb-10 text-center text-3xl font-bold">
           All Products List

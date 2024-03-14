@@ -4,7 +4,7 @@ import { HiCloudArrowUp } from 'react-icons/hi2';
 
 function AddProduct() {
   return (
-    <div className="w-full bg-slate-100 p-10 dark:bg-slate-950">
+    <div className="w-full bg-slate-100 dark:bg-slate-950 md:p-10">
       <div className="mx-auto max-w-5xl rounded-md bg-white p-10 dark:bg-slate-900">
         <h2 className="mb-10 text-3xl font-bold">Add Product</h2>
         <form className="flex flex-col gap-5">
@@ -12,7 +12,7 @@ function AddProduct() {
             Product title
             <Input placeholder="Type here" />
           </label>
-          <div className="flex items-center justify-between gap-8">
+          <div className="flex justify-between gap-8 max-md:flex-col md:items-center">
             <label htmlFor="" className="flex flex-1 flex-col gap-2">
               Price
               <Input placeholder="Type here" />
@@ -41,8 +41,8 @@ function AddProduct() {
               <input className="absolute opacity-0" type="file" />
             </div>
           </label>
-          <div className='w-fit'>
-            <Button variant='addProduct'>Add</Button>
+          <div className="w-32">
+            <Button variant="secondaryLessRound">Add</Button>
           </div>
         </form>
       </div>
