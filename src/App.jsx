@@ -25,7 +25,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="product/:id" element={<Product />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="listProducts" element={<ListProducts />} />
+          <Route path="listproducts" element={<ListProducts />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
