@@ -1,16 +1,18 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import AddProduct from './pages/AddProduct';
+import AdminPanel from './pages/AdminPanel';
 import AppLayout from './pages/AppLayout';
-import Kids from './pages/Kids';
-import Women from './pages/Women';
-import Men from './pages/Men';
-import Login from './pages/Login';
-import Product from './pages/Product';
 import Cart from './pages/Cart';
 import Homepage from './pages/Homepage';
-import PageNotFound from './pages/PageNotFound';
-import Register from './pages/Register';
+import Kids from './pages/Kids';
 import ListProducts from './pages/ListProducts';
+import Login from './pages/Login';
+import Men from './pages/Men';
+import PageNotFound from './pages/PageNotFound';
+import Product from './pages/Product';
+import Register from './pages/Register';
+import Women from './pages/Women';
 
 function App() {
   return (
@@ -25,8 +27,12 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="product/:id" element={<Product />} />
           <Route path="cart" element={<Cart />} />
-          <Route path="listproducts" element={<ListProducts />} />
           <Route path="*" element={<PageNotFound />} />
+
+          <Route element={<AdminPanel />}>
+            <Route index path="list-products" element={<ListProducts />} />
+            <Route path="add-product" element={<AddProduct />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
