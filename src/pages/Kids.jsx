@@ -1,4 +1,4 @@
-import CollectionSection from '../components/CollectionSection';
+import CollectionSection from "../components/product/CollectionSection";
 
 function Kids() {
   return <CollectionSection />;
