@@ -26,9 +26,7 @@ function MobileMenu() {
               alt="logo"
             />
           </header>
-
           <Divide />
-
           <ul
             className="my-7 flex flex-col gap-3 lg:hidden"
             onClick={() => setIsOpen(false)}

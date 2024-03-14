@@ -1,5 +1,24 @@
 import { HiTrash } from 'react-icons/hi2';
 
+const heads = [
+  'Product',
+  'Title',
+  'Old Price',
+  'New Price',
+  'Category',
+  'Remove',
+];
+
+const Td = ({ children, style }) => {
+  return (
+    <td
+      className={`${style} px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100`}
+    >
+      {children}
+    </td>
+  );
+};
+
 function ListProducts() {
   return (
     <div className="w-full bg-slate-100 dark:bg-slate-950 md:p-10">
@@ -14,42 +33,15 @@ function ListProducts() {
                 <table className="min-w-full">
                   <thead className="border-b bg-white dark:bg-slate-900">
                     <tr>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 text-left text-sm font-medium text-gray-900 dark:text-slate-100"
-                      >
-                        Product
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 text-left text-sm font-medium text-gray-900 dark:text-slate-100"
-                      >
-                        Title
-                      </th>
-                      <th
-                        scope="col"
-                        className="whitespace-nowrap px-6 py-4 text-left text-sm font-medium text-gray-900 dark:text-slate-100"
-                      >
-                        Old Price
-                      </th>
-                      <th
-                        scope="col"
-                        className="whitespace-nowrap px-6 py-4 text-left text-sm font-medium text-gray-900 dark:text-slate-100"
-                      >
-                        New Price
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 text-left text-sm font-medium text-gray-900 dark:text-slate-100"
-                      >
-                        Category
-                      </th>
-                      <th
-                        scope="col"
-                        className="px-6 py-4 text-left text-sm font-medium text-gray-900 dark:text-slate-100"
-                      >
-                        Remove
-                      </th>
+                      {heads.map((head, index) => (
+                        <th
+                          key={index}
+                          scope="col"
+                          className="whitespace-nowrap px-6 py-4 text-left text-sm font-medium text-gray-900 dark:text-slate-100"
+                        >
+                          {head}
+                        </th>
+                      ))}
                     </tr>
                   </thead>
                   <tbody>
@@ -57,41 +49,25 @@ function ListProducts() {
                       <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
                         <img src="images/cart_product_icon.png" alt="" />
                       </td>
-                      <td className="px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
-                        Boys Orange Colourblocked Hooded Sweatshirt
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
-                        120.5
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
-                        85.0
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
-                        women
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
+                      <Td>Boys Orange Colourblocked Hooded Sweatshirt</Td>
+                      <Td style="whitespace-nowrap">$120.5</Td>
+                      <Td style="whitespace-nowrap">85.0</Td>
+                      <Td style="whitespace-nowrap">women</Td>
+                      <Td style="whitespace-nowrap">
                         <HiTrash className="cursor-pointer transition-all hover:text-rose-500" />
-                      </td>
+                      </Td>
                     </tr>
                     <tr className="border-b bg-white dark:bg-slate-900">
                       <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
                         <img src="images/cart_product_icon.png" alt="" />
                       </td>
-                      <td className="px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
-                        Boys Orange Colourblocked Hooded Sweatshirt
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
-                        120.5
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
-                        85.0
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
-                        women
-                      </td>
-                      <td className="whitespace-nowrap px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100">
+                      <Td>Boys Orange Colourblocked Hooded Sweatshirt</Td>
+                      <Td style="whitespace-nowrap">$120.5</Td>
+                      <Td style="whitespace-nowrap">85.0</Td>
+                      <Td style="whitespace-nowrap">women</Td>
+                      <Td style="whitespace-nowrap">
                         <HiTrash className="cursor-pointer transition-all hover:text-rose-500" />
-                      </td>
+                      </Td>
                     </tr>
                   </tbody>
                 </table>

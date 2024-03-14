@@ -2,6 +2,17 @@ import Button from '../Button';
 import ProductSize from './ProductSize';
 import Star from './Star';
 
+const StyledP = ({ title, description }) => {
+  return (
+    <p>
+      <strong>{title} : </strong>
+      <span className="text-sm text-slate-600 dark:text-slate-300">
+        {description}
+      </span>
+    </p>
+  );
+};
+
 function ProductInfos() {
   return (
     <div>
@@ -22,18 +33,8 @@ function ProductInfos() {
       <div className="my-8 w-40">
         <Button variant="secondaryLessRound">ADD TO CART</Button>
       </div>
-      <p>
-        <strong>Category : </strong>
-        <span className="text-sm text-slate-600 dark:text-slate-300">
-          Women, T-shirt, Crop Top
-        </span>
-      </p>
-      <p>
-        <strong>Tags : </strong>
-        <span className="text-sm text-slate-600 dark:text-slate-300">
-          Modern, Latest
-        </span>
-      </p>
+      <StyledP title="Category" description="Women, T-shirt, Crop Top" />
+      <StyledP title="Tags" description="Modern, Latest" />
     </div>
   );
 }

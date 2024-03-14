@@ -24,12 +24,6 @@ function Breadcrumb({ links }) {
           </Link>
         </li>
       ))}
-      {/* <li
-        className="flex items-center truncate text-sm font-semibold text-slate-800 dark:text-slate-200"
-        aria-current="page"
-      >
-        Application
-      </li> */}
     </ul>
   );
 }

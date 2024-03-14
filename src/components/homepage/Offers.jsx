@@ -16,7 +16,7 @@ function Offers() {
             <h2 className="text-5xl font-bold lg:text-7xl">
               Exclusive <br /> Offers For You
             </h2>
-            <p className="my-5 font-bold  uppercase lg:text-lg">
+            <p className="my-5 font-bold uppercase lg:text-lg">
               only on best sellers products
             </p>
             <div className="w-5/6 text-lg lg:w-2/3">
