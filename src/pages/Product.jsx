@@ -11,12 +11,8 @@ function Product() {
     <div className="container pt-10">
       <Breadcrumb
         links={[
-          { id: 1, title: 'product', to: '/' },
-          {
-            id: 2,
-            title: id,
-            to: `/product/${id}`,
-          },
+          { id: 1, title: 'product', to: '/product' },
+          { id: 2, title: id, to: `/product/${id}` },
         ]}
       />
       <div className="mt-10 grid items-start justify-between gap-10 md:grid-cols-2">

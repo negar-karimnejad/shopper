@@ -10,6 +10,7 @@ import Cart from './pages/Cart';
 import Homepage from './pages/Homepage';
 import PageNotFound from './pages/PageNotFound';
 import Register from './pages/Register';
+import ListProducts from './pages/ListProducts';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="register" element={<Register />} />
           <Route path="product/:id" element={<Product />} />
           <Route path="cart" element={<Cart />} />
+          <Route path="listProducts" element={<ListProducts />} />
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
