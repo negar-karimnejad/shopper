@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function PageNotFound() {
   return (
     <>
-      <div className="sm:scale-60 max-lg:mt-10 md:h-80 lg:scale-50">
+      <div className="mx-auto w-80 py-10 sm:w-96 ">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080">
           <title>404</title>
           <g id="Layer_12 yellow-back-fig" data-name="Layer 12">
@@ -444,10 +444,8 @@ function PageNotFound() {
           </g>
         </svg>
       </div>
-      <div className="text-md m-10 mx-auto w-48 border border-rose-600 bg-white px-6 py-2 text-center font-semibold text-rose-600 transition-all hover:bg-rose-500 hover:text-white dark:text-white lg:mt-16">
-        <Link to="/" className=" ">
-          BACK TO HOME
-        </Link>
+      <div className="text-md mx-auto w-48 border border-rose-600 bg-white py-3 text-center text-rose-600 transition-all hover:bg-rose-500 hover:text-white dark:bg-rose-500 dark:text-white">
+        <Link to="/">BACK TO HOME</Link>
       </div>
     </>
   );
