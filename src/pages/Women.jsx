@@ -1,4 +1,4 @@
-import CollectionSection from "../components/product/CollectionSection";
+import CollectionSection from '../components/product/CollectionSection';
 
 function Women() {
   return <CollectionSection />;
