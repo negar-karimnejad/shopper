@@ -1,4 +1,6 @@
 import { createContext, useContext, useReducer } from 'react';
+import connectDB from '../utils/db';
+import { ShoppingCart } from '../../model/Cart';
 
 const CartContext = createContext();
 const initialState = {
@@ -19,13 +21,20 @@ const reducer = (state, action) => {
 };
 
 function CartProvider({ children }) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [{ cart }, dispatch] = useReducer(reducer, initialState);
 
-  const getCart =()=>{
-    
-  }
+  const getCart = async (userId) => {
+    try {
+      connectDB();
+      const shoppingCart = await ShoppingCart.find({ userId });
+      dispatch({ type: 'getCart', payload: shoppingCart });
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ dispatch, state }}>
+    <CartContext.Provider value={{ getCart, cart }}>
       {children}
     </CartContext.Provider>
   );
