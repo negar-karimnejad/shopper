@@ -1,12 +1,3 @@
-// {
-//     id: 11,
-//     name: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
-//     category: 'women',
-//     image: p11_img,
-//     new_price: 85.0,
-//     old_price: 120.5,
-//   },
-
 import { useState } from 'react';
 import Button from '../components/Button';
 import Input from '../components/Input';
@@ -18,7 +9,8 @@ function CreateProduct() {
   const [image, setImage] = useState('');
   const [newPrice, setNewPrice] = useState('');
   const [oldPrice, setOldPrice] = useState('');
-  const { addProduct, products } = useProduct();
+  
+  const { addProduct } = useProduct();
 
   const submitHandle = async (e) => {
     e.preventDefault();

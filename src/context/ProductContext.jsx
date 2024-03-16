@@ -26,13 +26,10 @@ const ProductProvider = ({ children }) => {
 
   const addProduct = async (newProduct) => {
     try {
-      const product = new Product(newProduct); // Create a new instance of the Product model
-      await product.save(); // Save the new product to the database
-      dispatch({ type: 'addProduct', payload: product }); // Dispatch the action to update the state
-      console.log('Product added:', product); // Log the added product
-      return product; // Return the added product if needed
+      await Product.insertOne(newProduct);
+      dispatch({ type: 'addProduct', payload: newProduct });
     } catch (error) {
-      console.error('Error adding product:', error); // Log any errors that occur
+      console.error('Error adding product:', error.message);
     }
   };
 
