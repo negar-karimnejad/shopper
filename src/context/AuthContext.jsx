@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from 'react';
-import connectDB from '../utils/db';
 import { User } from '../../model/User';
 
 const AuthContex = createContext();
@@ -28,7 +27,6 @@ function AuthProvider({ children }) {
   );
 
   const getUser = async (id) => {
-    connectDB();
     try {
       const user = await User.findOne({ id });
       dispatch({ type: 'getUser', payload: user });

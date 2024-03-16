@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from 'react';
-import connectDB from '../utils/db';
 import { ShoppingCart } from '../../model/Cart';
 
 const CartContext = createContext();
@@ -19,7 +18,6 @@ const reducer = (state, action) => {
         ...state,
         cart: action.payload,
       };
-
     default:
       throw new Error('Unknown Action Type');
   }
@@ -30,7 +28,6 @@ function CartProvider({ children }) {
 
   const getCart = async (userId) => {
     try {
-      await connectDB();
       const shoppingCart = await ShoppingCart.find({ userId });
       dispatch({ type: 'getCart', payload: shoppingCart });
     } catch (error) {
@@ -42,7 +39,6 @@ function CartProvider({ children }) {
     const { productId, quantity, price, userId } = newItem;
 
     try {
-      connectDB();
       let shoppingCart = await ShoppingCart.findOne({ userId });
       if (!shoppingCart) {
         shoppingCart = new ShoppingCart({
@@ -92,3 +88,4 @@ function useCart() {
 }
 
 export { CartProvider, useCart };
+
