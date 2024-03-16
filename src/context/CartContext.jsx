@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useReducer } from 'react';
 import { ShoppingCart } from '../../model/Cart';
 
@@ -39,7 +40,7 @@ function CartProvider({ children }) {
     const { productId, quantity, price, userId } = newItem;
 
     try {
-      let shoppingCart = await ShoppingCart.findOne({ userId });
+      let shoppingCart = await ShoppingCart.findOne({ userId: userId });
       if (!shoppingCart) {
         shoppingCart = new ShoppingCart({
           userId,
@@ -88,4 +89,3 @@ function useCart() {
 }
 
 export { CartProvider, useCart };
-

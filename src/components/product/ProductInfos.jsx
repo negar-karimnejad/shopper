@@ -26,7 +26,7 @@ function ProductInfos() {
       productId: id,
       quantity: 1,
       price: 123,
-      userId: user?.id || '123',
+      userId: '123',
     };
     addToCart(newItem);
   };

@@ -1,18 +1,16 @@
+import CartItems from '../components/cart/CartItems';
 import CartTotals from '../components/cart/CartTotals';
 import Coupon from '../components/cart/Coupon';
-import CartItems from '../components/cart/CartItems';
-import { useEffect } from 'react';
-import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
 
 function Cart() {
-  const { getCart, cart } = useCart();
-  const { user } = useAuth();
+  // const { getCart, cart } = useCart();
+  // const { user } = useAuth();
 
-  useEffect(() => {
-    getCart(user.id);
-  }, [getCart, user.id]);
-  console.log(user);
+  // useEffect(() => {
+  //   getCart(user.id);
+  // }, [getCart, user.id]);
+
+  // console.log(cart);
 
   return (
     <div className="container pt-10">

@@ -1,4 +1,4 @@
-function Input({ type = 'text', id, placeholder = '', disabled }) {
+function Input({ type = 'text', name = '', id, placeholder = '', disabled }) {
   if (placeholder === 'promo code') {
     return (
       <input
@@ -7,6 +7,7 @@ function Input({ type = 'text', id, placeholder = '', disabled }) {
         id={id}
         placeholder={placeholder}
         disabled={disabled}
+        name={name}
       />
     );
   }

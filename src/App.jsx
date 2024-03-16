@@ -15,32 +15,41 @@ import Register from './pages/Register';
 import Women from './pages/Women';
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
+import CreateProduct from './pages/CreateProduct';
+import { ProductProvider } from './context/ProductContext';
 
 function App() {
   return (
     <AuthProvider>
-      <CartProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route path="/" element={<Homepage />} />
-              <Route path="kids" element={<Kids />} />
-              <Route path="women" element={<Women />} />
-              <Route path="men" element={<Men />} />
-              <Route path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
-              <Route path="product/:id" element={<Product />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path="*" element={<PageNotFound />} />
+      <ProductProvider>
+        <CartProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<AppLayout />}>
+                <Route path="/" element={<Homepage />} />
+                <Route path="kids" element={<Kids />} />
+                <Route path="women" element={<Women />} />
+                <Route path="men" element={<Men />} />
+                <Route path="login" element={<Login />} />
+                <Route path="create-product" element={<CreateProduct />} />
+                <Route path="register" element={<Register />} />
+                <Route path="product/:id" element={<Product />} />
+                <Route path="cart" element={<Cart />} />
+                <Route path="*" element={<PageNotFound />} />
 
-              <Route element={<AdminPanel />}>
-                <Route index path="list-products" element={<ListProducts />} />
-                <Route path="add-product" element={<AddProduct />} />
+                <Route element={<AdminPanel />}>
+                  <Route
+                    index
+                    path="list-products"
+                    element={<ListProducts />}
+                  />
+                  <Route path="add-product" element={<AddProduct />} />
+                </Route>
               </Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-      </CartProvider>
+            </Routes>
+          </BrowserRouter>
+        </CartProvider>
+      </ProductProvider>
     </AuthProvider>
   );
 }
