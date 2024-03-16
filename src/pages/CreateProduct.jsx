@@ -18,11 +18,11 @@ function CreateProduct() {
   const [image, setImage] = useState('');
   const [newPrice, setNewPrice] = useState('');
   const [oldPrice, setOldPrice] = useState('');
-  const { CreateProduct } = useProduct();
+  const { addProduct, products } = useProduct();
 
   const submitHandle = async (e) => {
     e.preventDefault();
-    
+
     const newProduct = {
       name,
       category,
@@ -30,7 +30,12 @@ function CreateProduct() {
       new_price: newPrice,
       old_price: oldPrice,
     };
-    CreateProduct(newProduct);
+
+    try {
+      await addProduct(newProduct);
+    } catch (error) {
+      console.error('Error creating product:', error);
+    }
   };
 
   return (
@@ -39,31 +44,31 @@ function CreateProduct() {
       <form onSubmit={submitHandle} className="flex flex-col gap-2">
         <Input
           value={name}
-          onchange={(e) => setName(e.target.value)}
+          onChange={(e) => setName(e.target.value)}
           placeholder="name"
           type="text"
         />
         <Input
           value={category}
-          onchange={(e) => setCategory(e.target.value)}
+          onChange={(e) => setCategory(e.target.value)}
           placeholder="category"
           type="text"
         />
         <Input
           value={image}
-          onchange={(e) => setImage(e.target.value)}
+          onChange={(e) => setImage(e.target.value)}
           placeholder="image"
           type="text"
         />
         <Input
           value={newPrice}
-          onchange={(e) => setNewPrice(e.target.value)}
+          onChange={(e) => setNewPrice(e.target.value)}
           placeholder="new price"
           type="text"
         />
         <Input
           value={oldPrice}
-          onchange={(e) => setOldPrice(e.target.value)}
+          onChange={(e) => setOldPrice(e.target.value)}
           placeholder="old price"
           type="text"
         />

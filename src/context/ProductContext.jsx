@@ -7,12 +7,13 @@ const ProductContext = createContext();
 const initialState = {
   products: [],
 };
+
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'createProduct':
+    case 'addProduct':
       return {
         ...state,
-        products: action.payload,
+        products: [...state.products, action.payload],
       };
 
     default:
@@ -23,17 +24,20 @@ const reducer = (state, action) => {
 const ProductProvider = ({ children }) => {
   const [{ products }, dispatch] = useReducer(reducer, initialState);
 
-  const createProduct = async (newProduct) => {
+  const addProduct = async (newProduct) => {
     try {
-      const product = await Product.create(newProduct);
-      dispatch({ type: 'createProduct', payload: product });
+      const product = new Product(newProduct); // Create a new instance of the Product model
+      await product.save(); // Save the new product to the database
+      dispatch({ type: 'addProduct', payload: product }); // Dispatch the action to update the state
+      console.log('Product added:', product); // Log the added product
+      return product; // Return the added product if needed
     } catch (error) {
-      console.error(error.message);
+      console.error('Error adding product:', error); // Log any errors that occur
     }
   };
 
   return (
-    <ProductContext.Provider value={{ createProduct, products }}>
+    <ProductContext.Provider value={{ addProduct, products }}>
       {children}
     </ProductContext.Provider>
   );
@@ -42,7 +46,7 @@ const ProductProvider = ({ children }) => {
 const useProduct = () => {
   const context = useContext(ProductContext);
   if (!context)
-    throw new Error('Product provider uses where that is not provided');
+    throw new Error('useProduct must be used within a ProductProvider');
   return context;
 };
 export { ProductProvider, useProduct };

@@ -1,4 +1,12 @@
-function Input({ type = 'text', name = '', id, placeholder = '', disabled }) {
+function Input({
+  value,
+  onChange,
+  type = 'text',
+  name = '',
+  id,
+  placeholder = '',
+  disabled,
+}) {
   if (placeholder === 'promo code') {
     return (
       <input
@@ -8,6 +16,8 @@ function Input({ type = 'text', name = '', id, placeholder = '', disabled }) {
         placeholder={placeholder}
         disabled={disabled}
         name={name}
+        value={value}
+        onChange={onChange}
       />
     );
   }
@@ -18,6 +28,8 @@ function Input({ type = 'text', name = '', id, placeholder = '', disabled }) {
       id={id}
       placeholder={placeholder}
       disabled={disabled}
+      value={value}
+      onChange={onChange}
     />
   );
 }
