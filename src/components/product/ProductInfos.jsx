@@ -1,3 +1,6 @@
+import { useParams } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 import Button from '../Button';
 import ProductSize from './ProductSize';
 import Star from './Star';
@@ -14,6 +17,19 @@ const StyledP = ({ title, description }) => {
 };
 
 function ProductInfos() {
+  const { addToCart } = useCart();
+  const { user } = useAuth();
+  const { id } = useParams();
+
+  const clickHandler = () => {
+    const newItem = {
+      productId: id,
+      quantity: 1,
+      price,
+      userId: user.id,
+    };
+    addToCart(newItem);
+  };
   return (
     <div>
       <h2 className="text-3xl font-bold">
@@ -31,7 +47,9 @@ function ProductInfos() {
       </p>
       <ProductSize />
       <div className="my-8 w-40">
-        <Button variant="secondaryLessRound">ADD TO CART</Button>
+        <Button onClick={clickHandler} variant="secondaryLessRound">
+          ADD TO CART
+        </Button>
       </div>
       <StyledP title="Category" description="Women, T-shirt, Crop Top" />
       <StyledP title="Tags" description="Modern, Latest" />
