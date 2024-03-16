@@ -6,7 +6,7 @@ const connectDB = async () => {
     console.log(`Successfully connnected to mongoDB 👍`);
   } catch (error) {
     console.error(`ERROR: ${error.message}`);
-    import.meta.exit(1);
+    // import.meta.exit(1);
   }
 };
 

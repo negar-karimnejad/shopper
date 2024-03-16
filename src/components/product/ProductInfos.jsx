@@ -25,8 +25,8 @@ function ProductInfos() {
     const newItem = {
       productId: id,
       quantity: 1,
-      price,
-      userId: user.id,
+      price: 123,
+      userId: user?.id || '123',
     };
     addToCart(newItem);
   };

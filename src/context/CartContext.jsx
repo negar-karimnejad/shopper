@@ -19,7 +19,7 @@ const reducer = (state, action) => {
         ...state,
         cart: action.payload,
       };
-      
+
     default:
       throw new Error('Unknown Action Type');
   }
@@ -30,7 +30,7 @@ function CartProvider({ children }) {
 
   const getCart = async (userId) => {
     try {
-      connectDB();
+      await connectDB();
       const shoppingCart = await ShoppingCart.find({ userId });
       dispatch({ type: 'getCart', payload: shoppingCart });
     } catch (error) {
