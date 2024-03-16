@@ -26,7 +26,7 @@ const ProductProvider = ({ children }) => {
 
   const addProduct = async (newProduct) => {
     try {
-      await Product.insertOne(newProduct);
+      await Product.insert(newProduct);
       dispatch({ type: 'addProduct', payload: newProduct });
     } catch (error) {
       console.error('Error adding product:', error.message);

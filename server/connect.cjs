@@ -2,8 +2,10 @@ const { MongoClient } = require('mongodb');
 
 require('dotenv').config({ path: './config.env' });
 
-export async function main() {
-  const client = new MongoClient(import.meta.env.MONGO_URL);
+async function main() {
+  const client = new MongoClient(
+    'mongodb+srv://admin:admin@cluster0.ymlvgvu.mongodb.net/shopper',
+  );
 
   try {
     await client.connect();
