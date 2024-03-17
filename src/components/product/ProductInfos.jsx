@@ -1,6 +1,4 @@
-import { useParams } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext';
-import { useCart } from '../../context/CartContext';
+import { useProduct } from '../../context/ProductContext';
 import Button from '../Button';
 import ProductSize from './ProductSize';
 import Star from './Star';
@@ -17,28 +15,28 @@ const StyledP = ({ title, description }) => {
 };
 
 function ProductInfos() {
-  const { addToCart } = useCart();
-  const { user } = useAuth();
-  const { id } = useParams();
+  // const { addToCart } = useCart();
+  // const { user } = useAuth();
+  const { product } = useProduct();
 
   const clickHandler = () => {
-    const newItem = {
-      productId: id,
-      quantity: 1,
-      price: 123,
-      userId: '123',
-    };
-    addToCart(newItem);
+    // const newItem = {
+    //   productId: id,
+    //   quantity: 1,
+    //   price: 123,
+    //   userId: '123',
+    // };
+    // addToCart(newItem);
   };
+
+
   return (
     <div>
-      <h2 className="text-3xl font-bold">
-        Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse
-      </h2>
+      <h2 className="text-3xl font-bold">{product.name} </h2>
       <Star />
       <div className="my-5 flex gap-5 text-xl font-bold">
-        <span className="line-through">$120</span>
-        <span className="text-rose-600">$72</span>
+        <span className="line-through">{product.old_price}</span>
+        <span className="text-rose-600">{product.new_price}</span>
       </div>
       <p>
         Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque

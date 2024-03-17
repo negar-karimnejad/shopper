@@ -4,9 +4,20 @@ import DescriptionAndReviews from '../components/product/DescriptionAndReviews';
 import ProductImages from '../components/product/ProductImages';
 import ProductInfos from '../components/product/ProductInfos';
 import RelatedProducts from '../components/product/RelatedProducts';
+import { useProduct } from '../context/ProductContext';
+import { useEffect } from 'react';
+import Spinner from '../components/Spinner';
 
 function Product() {
+  const { getProduct, product } = useProduct();
   const { id } = useParams();
+
+  useEffect(() => {
+    getProduct(id);
+  }, [getProduct, id]);
+
+  if (!product) return <Spinner />;
+
   return (
     <div className="container pt-10">
       <Breadcrumb

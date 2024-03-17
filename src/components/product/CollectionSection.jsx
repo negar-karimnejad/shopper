@@ -17,6 +17,8 @@ function CollectionSection({ products, banner }) {
         ))}
       </ProductsList>
       <div className="mx-auto mt-20 w-fit">
+
+        {/*"TASK": Create Pagination (8 products in each page) */}
         <Button>Explore More</Button>
       </div>
     </div>

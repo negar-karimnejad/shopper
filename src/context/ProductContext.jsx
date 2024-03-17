@@ -6,6 +6,7 @@ const ProductContext = createContext();
 
 const initialState = {
   products: [],
+  product: null,
 };
 
 const reducer = (state, action) => {
@@ -14,6 +15,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         products: action.payload,
+      };
+    case 'getProduct':
+      return {
+        ...state,
+        product: action.payload,
       };
 
     case 'addProduct':
@@ -28,7 +34,7 @@ const reducer = (state, action) => {
 };
 
 const ProductProvider = ({ children }) => {
-  const [{ products }, dispatch] = useReducer(reducer, initialState);
+  const [{ products, product }, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     const getProducts = async () => {
@@ -42,6 +48,14 @@ const ProductProvider = ({ children }) => {
     getProducts();
   }, []);
 
+  const getProduct = async (id) => {
+    try {
+      const product = products.find((product) => product.id === Number(id));
+      dispatch({ type: 'getProduct', payload: product });
+    } catch (error) {
+      console.error('Error getting product:', error.message);
+    }
+  };
   const addProduct = async (newProduct) => {
     try {
       await supabase.from('products').insert(newProduct).select();
@@ -51,15 +65,23 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const kidsProducts = products.filter((product) => product.category === 'kid');
   const menProducts = products.filter((product) => product.category === 'men');
   const womenProducts = products.filter(
     (product) => product.category === 'women',
   );
-  const kidsProducts = products.filter((product) => product.category === 'kid');
 
   return (
     <ProductContext.Provider
-      value={{ addProduct, products, menProducts, womenProducts, kidsProducts }}
+      value={{
+        addProduct,
+        getProduct,
+        products,
+        product,
+        menProducts,
+        womenProducts,
+        kidsProducts,
+      }}
     >
       {children}
     </ProductContext.Provider>
