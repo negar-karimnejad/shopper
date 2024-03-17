@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
 
 function Offers() {
+  const navigate = useNavigate();
+
   return (
     <div className="container mt-32">
       <div className="bg-gradient-to-b from-rose-50 p-10 dark:from-slate-950">
@@ -20,7 +23,12 @@ function Offers() {
               only on best sellers products
             </p>
             <div className="w-5/6 text-lg lg:w-2/3">
-              <Button variant="secondary">Check now</Button>
+              <Button
+                variant="secondary"
+                onClick={() => navigate('/products/offers')}
+              >
+                Check now
+              </Button>
             </div>
           </div>
         </div>

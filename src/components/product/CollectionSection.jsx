@@ -9,15 +9,14 @@ function CollectionSection({ products, banner }) {
 
   return (
     <div className="container pt-10">
-      <img src={banner} alt="men-banner" />
-      <ProductsFilter />
+      {banner && <img src={banner} alt="men-banner" />}
+      <ProductsFilter products={products} />
       <ProductsList>
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ProductsList>
       <div className="mx-auto mt-20 w-fit">
-
         {/*"TASK": Create Pagination (8 products in each page) */}
         <Button>Explore More</Button>
       </div>

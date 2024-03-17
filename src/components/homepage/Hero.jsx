@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import Button from '../Button';
 
 function Hero() {
+  const navigate = useNavigate();
+
   return (
     <div className="bg-gradient-to-b from-rose-50 dark:from-slate-950 max-md:py-10">
       <div className="container flex flex-col items-center justify-between gap-y-10 md:flex-row">
@@ -11,7 +14,10 @@ function Hero() {
             <br /> for everyone
           </h2>
           <div className="mt-14 w-5/6 text-lg lg:w-2/3">
-            <Button variant="secondary">
+            <Button
+              variant="secondary"
+              onClick={() => navigate('/products/latest')}
+            >
               Latest collection <span className="text-2xl">&rarr;</span>
             </Button>
           </div>

@@ -17,6 +17,7 @@ import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
 import CreateProduct from './pages/CreateProduct';
 import { ProductProvider } from './context/ProductContext';
+import Products from './pages/Products';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="create-product" element={<CreateProduct />} />
                 <Route path="register" element={<Register />} />
+                <Route path="products/:query" element={<Products />} />
                 <Route path="product/:id" element={<Product />} />
                 <Route path="cart" element={<Cart />} />
                 <Route path="*" element={<PageNotFound />} />

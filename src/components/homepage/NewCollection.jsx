@@ -13,7 +13,7 @@ function NewCollection() {
     <div className="container">
       <SectionHeader title="new collections" />
       <ProductsList>
-        {newProducts.map((product) => (
+        {newProducts.slice(0, 4).map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ProductsList>
