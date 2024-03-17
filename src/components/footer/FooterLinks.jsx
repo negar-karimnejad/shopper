@@ -1,9 +1,8 @@
 import { Link } from 'react-router-dom';
 
 const navigation = [
-  { name: 'Company', to: '', current: '' },
   { name: 'Products', to: '/products/newest', current: '' },
-  { name: 'Offices', to: '', current: '' },
+  { name: 'Offices', to: '/offices', current: '' },
   { name: 'About', to: '/about-us', current: '' },
   { name: 'Contact', to: '/conatct', current: '' },
 ];
