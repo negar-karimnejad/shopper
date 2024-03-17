@@ -7,7 +7,7 @@ function Breadcrumb({ links }) {
       <li className="inline-flex items-center">
         <Link
           to="/"
-          className="flex items-center gap-1 text-sm text-slate-500 hover:text-rose-600 focus:text-rose-600 focus:outline-none dark:focus:text-rose-500"
+          className="flex items-center gap-1 text-sm text-slate-400 hover:text-rose-600 focus:text-rose-600 focus:outline-none dark:focus:text-rose-500"
         >
           <HiHome />
           Home
@@ -19,7 +19,7 @@ function Breadcrumb({ links }) {
           <HiMiniChevronRight size={18} className="mx-1 opacity-60" />
           <Link
             to={link.to}
-            className="flex items-center text-sm font-medium text-slate-500 hover:text-rose-600 focus:text-rose-600 focus:outline-none dark:focus:text-rose-500"
+            className={`${link.title === 'Shop' ? 'text-slate-400' : 'text-slate-200'} flex items-center text-sm font-medium hover:text-rose-600 focus:text-rose-600 focus:outline-none dark:focus:text-rose-500`}
           >
             {link.title}
           </Link>
