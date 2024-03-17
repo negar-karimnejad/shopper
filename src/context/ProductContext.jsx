@@ -1,15 +1,22 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useReducer } from 'react';
-import { Product } from '../../model/Product';
+import { createContext, useContext, useEffect, useReducer } from 'react';
+import supabase from '../services/supabase';
 
 const ProductContext = createContext();
 
 const initialState = {
   products: [],
+  isFetching: false,
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
+    case 'getProducts':
+      return {
+        ...state,
+        products: action.payload,
+      };
+
     case 'addProduct':
       return {
         ...state,
@@ -24,9 +31,20 @@ const reducer = (state, action) => {
 const ProductProvider = ({ children }) => {
   const [{ products }, dispatch] = useReducer(reducer, initialState);
 
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        let { data: products } = await supabase.from('products').select('*');
+        dispatch({ type: 'getProducts', payload: products });
+      } catch (error) {
+        console.error('Error getting products:', error.message);
+      }
+    };
+    getProducts();
+  }, []);
   const addProduct = async (newProduct) => {
     try {
-      await Product.insert(newProduct);
+      await supabase.from('products').insert(newProduct).select();
       dispatch({ type: 'addProduct', payload: newProduct });
     } catch (error) {
       console.error('Error adding product:', error.message);

@@ -9,7 +9,7 @@ function CreateProduct() {
   const [image, setImage] = useState('');
   const [newPrice, setNewPrice] = useState('');
   const [oldPrice, setOldPrice] = useState('');
-  
+
   const { addProduct } = useProduct();
 
   const submitHandle = async (e) => {

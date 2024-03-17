@@ -1,19 +1,17 @@
 import { Link } from 'react-router-dom';
 
-function ProductCard() {
-  const id = 6548;
+function ProductCard({ product }) {
+console.log(product);
   return (
     <Link
-      to={`/product/${id}`}
+      to={`/product/${product?.id}`}
       className="flex flex-col gap-3 transition-all duration-300 hover:scale-105"
     >
-      <img src="images/product_3.png" alt="product" />
-      <p className="leading-5">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa
-      </p>
+      <img src={product?.image} alt="product" />
+      <p className="leading-5">{product?.name}</p>
       <div className="text-md flex gap-5 text-lg">
-        <p>$70 </p>
-        <p className="line-through opacity-60">$120</p>
+        <p>{product?.new_price}</p>
+        <p className="line-through opacity-60">{product?.old_price}</p>
       </div>
     </Link>
   );
