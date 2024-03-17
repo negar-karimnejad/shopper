@@ -4,12 +4,12 @@ import ProductCard from './ProductCard';
 import ProductsFilter from './ProductsFilter';
 import ProductsList from './ProductsList';
 
-function CollectionSection({ products }) {
+function CollectionSection({ products, banner }) {
   if (!products.length) return <Spinner />;
 
   return (
     <div className="container pt-10">
-      <img src="images/banner_mens.png" alt="men-banner" />
+      <img src={banner} alt="men-banner" />
       <ProductsFilter />
       <ProductsList>
         {products.map((product) => (
