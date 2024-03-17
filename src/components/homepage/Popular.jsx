@@ -5,14 +5,14 @@ import { useProduct } from '../../context/ProductContext';
 import Spinner from '../Spinner';
 
 function Popular() {
-  const { products } = useProduct();
+  const { popularProducts } = useProduct();
 
-  if (!products.length) return <Spinner />;
+  if (!popularProducts.length) return <Spinner />;
   return (
     <div className="container">
       <SectionHeader title="popular in women" />
       <ProductsList>
-        {products.slice(10,14).map((product) => (
+        {popularProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ProductsList>
