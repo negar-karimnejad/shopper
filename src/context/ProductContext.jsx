@@ -6,7 +6,6 @@ const ProductContext = createContext();
 
 const initialState = {
   products: [],
-  isFetching: false,
 };
 
 const reducer = (state, action) => {
@@ -42,6 +41,7 @@ const ProductProvider = ({ children }) => {
     };
     getProducts();
   }, []);
+
   const addProduct = async (newProduct) => {
     try {
       await supabase.from('products').insert(newProduct).select();
