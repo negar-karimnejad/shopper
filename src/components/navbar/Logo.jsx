@@ -8,7 +8,7 @@ function Logo() {
         src="images/logo_big.png"
         alt="logo"
       />
-      <h1 className="text-3xl font-semibold uppercase md:text-4xl">Shopper</h1>
+      <h1 className="text-3xl font-medium uppercase md:text-4xl">Shopper</h1>
     </Link>
   );
 }
