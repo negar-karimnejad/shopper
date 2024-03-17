@@ -63,7 +63,7 @@ function CreateProduct() {
       await supabase.from('products').insert([
         {
           id: 1,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: 'Baronin Tunic',
           category: 'women',
           image: p1_img,
           price: 50.0,
@@ -73,7 +73,7 @@ function CreateProduct() {
         },
         {
           id: 2,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: 'Fjallraven - Foldsack',
           category: 'women',
           image: p2_img,
           price: 85.0,
@@ -83,7 +83,7 @@ function CreateProduct() {
         },
         {
           id: 3,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: "John Hardy Women's Legends Naga Gold",
           category: 'women',
           image: p3_img,
           price: 60.0,
@@ -93,7 +93,7 @@ function CreateProduct() {
         },
         {
           id: 4,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: 'Striped Flutter Sleeve Overlap Collar',
           category: 'women',
           image: p4_img,
           price: 100.0,
@@ -103,7 +103,7 @@ function CreateProduct() {
         },
         {
           id: 5,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: 'Rain Jacket Women Windbreaker Striped',
           category: 'women',
           image: p5_img,
           price: 85.0,
@@ -113,7 +113,7 @@ function CreateProduct() {
         },
         {
           id: 6,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: "Lock and Love Women's Removable Hooded",
           category: 'women',
           image: p6_img,
           price: 85.0,
@@ -123,7 +123,7 @@ function CreateProduct() {
         },
         {
           id: 7,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: 'sunt aut facere repellat provident ',
           category: 'women',
           image: p7_img,
           price: 85.0,
@@ -133,7 +133,7 @@ function CreateProduct() {
         },
         {
           id: 8,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: 'Charming Sweater Kit',
           category: 'women',
           image: p8_img,
           price: 85.0,
@@ -143,7 +143,7 @@ function CreateProduct() {
         },
         {
           id: 9,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: "Tankaneo Women's Pullover Colour Block Long Sleeve",
           category: 'women',
           image: p9_img,
           price: 85.0,
@@ -153,7 +153,7 @@ function CreateProduct() {
         },
         {
           id: 10,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: 'Lightweight Long Sleeve',
           category: 'women',
           image: p10_img,
           price: 85.0,
@@ -163,7 +163,7 @@ function CreateProduct() {
         },
         {
           id: 11,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: 'Emma & Giovanni Women’s Oversize Jumper',
           category: 'women',
           image: p11_img,
           price: 85.0,
@@ -173,7 +173,7 @@ function CreateProduct() {
         },
         {
           id: 12,
-          title: 'Striped Flutter Sleeve Overlap Collar Peplum Hem Blouse',
+          title: "Vila Women's Viril",
           category: 'women',
           image: p12_img,
           price: 85.0,
@@ -183,7 +183,7 @@ function CreateProduct() {
         },
         {
           id: 13,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Big & Tall Graphic Tee T-Shirt',
           category: 'men',
           image: p13_img,
           price: 85.0,
@@ -193,7 +193,7 @@ function CreateProduct() {
         },
         {
           id: 14,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Calvin Klein Golf Men’s Crew Neck Tour Jumper',
           category: 'men',
           image: p14_img,
           price: 85.0,
@@ -203,7 +203,7 @@ function CreateProduct() {
         },
         {
           id: 15,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Steens Mountain Half Snap Men’s Pullover, Jumper',
           category: 'men',
           image: p15_img,
           price: 85.0,
@@ -213,7 +213,7 @@ function CreateProduct() {
         },
         {
           id: 16,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Raglan Sweatshirt',
           category: 'men',
           image: p16_img,
           price: 85.0,
@@ -223,7 +223,7 @@ function CreateProduct() {
         },
         {
           id: 17,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Full-Zip Slim Fit Bomber Jacket',
           category: 'men',
           image: p17_img,
           price: 85.0,
@@ -233,7 +233,7 @@ function CreateProduct() {
         },
         {
           id: 18,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Tesero Pullover T-Shirt',
           category: 'men',
           image: p18_img,
           price: 85.0,
@@ -243,7 +243,7 @@ function CreateProduct() {
         },
         {
           id: 19,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Male Knitted Jumper with Crew Neck, Plain',
           category: 'men',
           image: p19_img,
           price: 85.0,
@@ -253,7 +253,7 @@ function CreateProduct() {
         },
         {
           id: 20,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Men Green Solid Zippered',
           category: 'men',
           image: p20_img,
           price: 85.0,
@@ -263,7 +263,7 @@ function CreateProduct() {
         },
         {
           id: 21,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: "Oliver Men's sweater",
           category: 'men',
           image: p21_img,
           price: 85.0,
@@ -273,7 +273,7 @@ function CreateProduct() {
         },
         {
           id: 22,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Structure Made of Cotton',
           category: 'men',
           image: p22_img,
           price: 85.0,
@@ -283,7 +283,7 @@ function CreateProduct() {
         },
         {
           id: 23,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Round Neck Sweater',
           category: 'men',
           image: p23_img,
           price: 85.0,
@@ -293,7 +293,7 @@ function CreateProduct() {
         },
         {
           id: 24,
-          title: 'Men Green Solid Zippered Full-Zip Slim Fit Bomber Jacket',
+          title: 'Cotton Quarter Zip Jumper',
           category: 'men',
           image: p24_img,
           price: 85.0,
@@ -303,7 +303,7 @@ function CreateProduct() {
         },
         {
           id: 25,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Fleece Lined Winter Coat with Full Zip',
           category: 'kid',
           image: p25_img,
           price: 85.0,
@@ -313,7 +313,7 @@ function CreateProduct() {
         },
         {
           id: 26,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Boys Orange Colourblocked',
           category: 'kid',
           image: p26_img,
           price: 85.0,
@@ -323,7 +323,7 @@ function CreateProduct() {
         },
         {
           id: 27,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Hooded Sweatshirt',
           category: 'kid',
           image: p27_img,
           price: 85.0,
@@ -333,7 +333,7 @@ function CreateProduct() {
         },
         {
           id: 28,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Colourblocked Hooded',
           category: 'kid',
           image: p28_img,
           price: 85.0,
@@ -343,7 +343,7 @@ function CreateProduct() {
         },
         {
           id: 29,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Hannu Knitted Casual',
           category: 'kid',
           image: p29_img,
           price: 85.0,
@@ -353,7 +353,7 @@ function CreateProduct() {
         },
         {
           id: 30,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Duke Ronald Jumper',
           category: 'kid',
           image: p30_img,
           price: 85.0,
@@ -363,7 +363,7 @@ function CreateProduct() {
         },
         {
           id: 31,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'sweatshirt with crew',
           category: 'kid',
           image: p31_img,
           price: 85.0,
@@ -373,7 +373,7 @@ function CreateProduct() {
         },
         {
           id: 32,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Cotton Logo Hoodie, Hooded Jumper',
           category: 'kid',
           image: p32_img,
           price: 85.0,
@@ -383,7 +383,7 @@ function CreateProduct() {
         },
         {
           id: 33,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: "Children's Legacy American Classics B-Ultralight",
           category: 'kid',
           image: p33_img,
           price: 85.0,
@@ -393,7 +393,7 @@ function CreateProduct() {
         },
         {
           id: 34,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: "Squadra 21 Children's Tracksuit Top",
           category: 'kid',
           image: p34_img,
           price: 85.0,
@@ -403,7 +403,7 @@ function CreateProduct() {
         },
         {
           id: 35,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Colourblocked Hooded Sweatshirt',
           category: 'kid',
           image: p35_img,
           price: 85.0,
@@ -413,7 +413,7 @@ function CreateProduct() {
         },
         {
           id: 36,
-          title: 'Boys Orange Colourblocked Hooded Sweatshirt',
+          title: 'Strickjacke Baumwoll',
           category: 'kid',
           image: p36_img,
           price: 85.0,

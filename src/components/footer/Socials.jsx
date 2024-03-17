@@ -1,9 +1,9 @@
 import { FaInstagram, FaPinterest, FaWhatsapp } from 'react-icons/fa';
 
-const Social = ({ icon, color }) => {
+const Social = ({ icon }) => {
   return (
     <div
-      className={`cursor-pointer text-2xl transition-all hover:scale-105 hover:text-${color}-500`}
+      className={`cursor-pointer text-2xl text-slate-400 transition-all hover:scale-105 hover:text-slate-50`}
     >
       {icon}
     </div>
@@ -13,9 +13,9 @@ const Social = ({ icon, color }) => {
 function Socials() {
   return (
     <div className="flex gap-5">
-      <Social icon={<FaPinterest />} color="rose" />
-      <Social icon={<FaInstagram />} color="rose" />
-      <Social icon={<FaWhatsapp />} color="green" />
+      <Social icon={<FaPinterest />} />
+      <Social icon={<FaInstagram />} />
+      <Social icon={<FaWhatsapp />} />
     </div>
   );
 }
