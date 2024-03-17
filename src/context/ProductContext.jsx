@@ -65,18 +65,22 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const popularProducts = products
-    .filter((product) => product.category === 'women')
-    .slice()
-    .sort((a, b) => b.rating - a.rating)
-    .slice(0, 4);
+  // Sort products according by: offers, new, expensive, cheapest, kids, men, women, popular
+
   const offersProducts = products.slice().sort((a, b) => b.rating - a.rating);
   const newProducts = products.slice().sort((a, b) => b.id - a.id);
+  const expensiveProducts = products.slice().sort((a, b) => b.price - a.price);
+  const cheapestProducts = products.slice().sort((a, b) => a.price - b.price);
   const kidsProducts = products.filter((product) => product.category === 'kid');
   const menProducts = products.filter((product) => product.category === 'men');
   const womenProducts = products.filter(
     (product) => product.category === 'women',
   );
+  const popularProducts = products
+    .filter((product) => product.category === 'women')
+    .slice()
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 4);
 
   return (
     <ProductContext.Provider
@@ -91,6 +95,8 @@ const ProductProvider = ({ children }) => {
         newProducts,
         popularProducts,
         offersProducts,
+        expensiveProducts,
+        cheapestProducts,
       }}
     >
       {children}

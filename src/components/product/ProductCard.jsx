@@ -15,9 +15,9 @@ function ProductCard({ product }) {
       </Link>
       <div className="text-md flex flex-1 items-center justify-between gap-5 px-3 text-lg">
         <p className="text-md">{formatCurrency(product?.price)}</p>
-        <p className="text-md ">
+        <div className="text-md ">
           <Star rating={product?.rating} />
-        </p>
+        </div>
       </div>
       <div className="flex-1 px-5">
         <Button variant="secondaryLessRound">Add To Cart</Button>

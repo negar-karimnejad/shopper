@@ -1,4 +1,3 @@
-import Button from '../Button';
 import Spinner from '../Spinner';
 import ProductCard from './ProductCard';
 import ProductsFilter from './ProductsFilter';
@@ -16,10 +15,6 @@ function CollectionSection({ products, banner }) {
           <ProductCard key={product.id} product={product} />
         ))}
       </ProductsList>
-      <div className="mx-auto mt-20 w-fit">
-        {/*"TASK": Create Pagination (8 products in each page) */}
-        <Button>Explore More</Button>
-      </div>
     </div>
   );
 }

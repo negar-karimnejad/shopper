@@ -1,15 +1,21 @@
-import { useProduct } from '../context/ProductContext';
-import CollectionSection from '../components/product/CollectionSection';
-import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import CollectionSection from '../components/product/CollectionSection';
+import { useProduct } from '../context/ProductContext';
 
 function Products() {
-  const { offersProducts, newProducts } = useProduct();
+  const { offersProducts, newProducts, expensiveProducts, cheapestProducts } =
+    useProduct();
   const { query } = useParams();
 
   const products =
+    (query === '' && offersProducts) ||
     (query === 'offers' && offersProducts) ||
-    (query === 'latest' && newProducts);
+    (query === 'bestSelling' && offersProducts) ||
+    (query === 'latest' && newProducts) ||
+    (query === 'newest' && newProducts) ||
+    (query === 'expensive' && expensiveProducts) ||
+    (query === 'cheapest' && cheapestProducts);
 
   useEffect(() => {
     window.scrollTo(0, 0);
