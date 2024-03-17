@@ -18,6 +18,8 @@ import { AuthProvider } from './context/AuthContext';
 import CreateProduct from './pages/CreateProduct';
 import { ProductProvider } from './context/ProductContext';
 import Products from './pages/Products';
+import AboutUs from './pages/AboutUs';
+import Conatct from './pages/Conatct';
 
 function App() {
   return (
@@ -29,6 +31,8 @@ function App() {
               <Route element={<AppLayout />}>
                 <Route path="/" element={<Homepage />} />
                 <Route path="kids" element={<Kids />} />
+                <Route path="about-us" element={<AboutUs />} />
+                <Route path="conatct" element={<Conatct />} />
                 <Route path="women" element={<Women />} />
                 <Route path="men" element={<Men />} />
                 <Route path="login" element={<Login />} />

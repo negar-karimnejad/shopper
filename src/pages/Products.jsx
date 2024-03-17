@@ -9,7 +9,6 @@ function Products() {
   const { query } = useParams();
 
   const products =
-    (query === '' && offersProducts) ||
     (query === 'offers' && offersProducts) ||
     (query === 'bestSelling' && offersProducts) ||
     (query === 'latest' && newProducts) ||
