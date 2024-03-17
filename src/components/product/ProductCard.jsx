@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Spinner from '../Spinner';
+import { formatCurrency } from '../../utilities/formatCurrency';
 
 function ProductCard({ product }) {
   if (!product) return <Spinner />;
@@ -12,7 +13,7 @@ function ProductCard({ product }) {
       <img src={product.image} alt="product" />
       <p className="leading-5">{product.title}</p>
       <div className="text-md flex gap-5 text-lg">
-        <p>{product?.price}</p>
+        <p>{formatCurrency(product?.price)}</p>
       </div>
     </Link>
   );

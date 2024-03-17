@@ -13,12 +13,13 @@ function Breadcrumb({ links }) {
           Home
         </Link>
       </li>
+
       {links.map((link) => (
         <li key={link.id} className="inline-flex items-center">
           <HiMiniChevronRight size={18} className="mx-1 opacity-60" />
           <Link
-            to={links.to}
-            className="flex items-center text-sm text-slate-500 hover:text-rose-600 focus:text-rose-600 focus:outline-none dark:focus:text-rose-500"
+            to={link.to}
+            className="flex items-center text-sm font-medium text-slate-500 hover:text-rose-600 focus:text-rose-600 focus:outline-none dark:focus:text-rose-500"
           >
             {link.title}
           </Link>

@@ -1,4 +1,5 @@
 import { HiTrash } from 'react-icons/hi2';
+import { formatCurrency } from '../utilities/formatCurrency';
 
 const heads = [
   'Product',
@@ -50,8 +51,8 @@ function ListProducts() {
                         <img src="images/cart_product_icon.png" alt="" />
                       </td>
                       <Td>Boys Orange Colourblocked Hooded Sweatshirt</Td>
-                      <Td style="whitespace-nowrap">$120.5</Td>
-                      <Td style="whitespace-nowrap">85.0</Td>
+                      <Td style="whitespace-nowrap">{formatCurrency(120.5)}</Td>
+                      <Td style="whitespace-nowrap">{formatCurrency(85.0)}</Td>
                       <Td style="whitespace-nowrap">women</Td>
                       <Td style="whitespace-nowrap">
                         <HiTrash className="cursor-pointer transition-all hover:text-rose-500" />
@@ -62,8 +63,8 @@ function ListProducts() {
                         <img src="images/cart_product_icon.png" alt="" />
                       </td>
                       <Td>Boys Orange Colourblocked Hooded Sweatshirt</Td>
-                      <Td style="whitespace-nowrap">$120.5</Td>
-                      <Td style="whitespace-nowrap">85.0</Td>
+                      <Td style="whitespace-nowrap">{formatCurrency(120.5)}</Td>
+                      <Td style="whitespace-nowrap">{formatCurrency(85.0)}</Td>
                       <Td style="whitespace-nowrap">women</Td>
                       <Td style="whitespace-nowrap">
                         <HiTrash className="cursor-pointer transition-all hover:text-rose-500" />

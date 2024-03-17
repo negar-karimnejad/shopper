@@ -65,9 +65,14 @@ const ProductProvider = ({ children }) => {
     }
   };
 
-  const popularProducts = products.filter(product=>product.category==="women")
+  const popularProducts = products
+    .filter((product) => product.category === 'women')
     .slice()
     .sort((a, b) => b.rating - a.rating)
+    .slice(0, 4);
+  const newProducts = products
+    .slice()
+    .sort((a, b) => b.id - a.id)
     .slice(0, 4);
   const kidsProducts = products.filter((product) => product.category === 'kid');
   const menProducts = products.filter((product) => product.category === 'men');
@@ -85,6 +90,7 @@ const ProductProvider = ({ children }) => {
         menProducts,
         womenProducts,
         kidsProducts,
+        newProducts,
         popularProducts,
       }}
     >

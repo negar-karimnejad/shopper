@@ -5,15 +5,15 @@ import SectionHeader from './SectionHeader';
 import Spinner from '../Spinner';
 
 function NewCollection() {
-  const { products } = useProduct();
+  const { newProducts } = useProduct();
 
-  if (!products.length) return <Spinner />;
+  if (!newProducts.length) return <Spinner />;
 
   return (
     <div className="container">
       <SectionHeader title="new collections" />
       <ProductsList>
-        {products.slice(0,4).map((product) => (
+        {newProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </ProductsList>

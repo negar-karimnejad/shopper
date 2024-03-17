@@ -3,6 +3,7 @@ import Button from '../Button';
 import ProductSize from './ProductSize';
 import Star from './Star';
 import Spinner from '../Spinner';
+import { formatCurrency } from '../../utilities/formatCurrency';
 
 const StyledP = ({ title, description }) => {
   return (
@@ -36,7 +37,7 @@ function ProductInfos() {
       <h2 className="text-3xl font-bold">{product.title} </h2>
       <Star />
       <div className="my-5 flex gap-5 text-xl font-bold">
-        <span className="text-rose-600">{product.price}</span>
+        <span className="text-rose-600">{formatCurrency(product.price)}</span>
       </div>
       <p>{product.description}</p>
       <ProductSize />
