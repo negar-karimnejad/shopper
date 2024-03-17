@@ -51,8 +51,16 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const menProducts = products.filter((product) => product.category === 'men');
+  const womenProducts = products.filter(
+    (product) => product.category === 'women',
+  );
+  const kidsProducts = products.filter((product) => product.category === 'kid');
+
   return (
-    <ProductContext.Provider value={{ addProduct, products }}>
+    <ProductContext.Provider
+      value={{ addProduct, products, menProducts, womenProducts, kidsProducts }}
+    >
       {children}
     </ProductContext.Provider>
   );

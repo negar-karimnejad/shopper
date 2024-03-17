@@ -1,16 +1,19 @@
 import Button from '../Button';
+import Spinner from '../Spinner';
 import ProductCard from './ProductCard';
-import ProductsList from './ProductsList';
 import ProductsFilter from './ProductsFilter';
+import ProductsList from './ProductsList';
 
-function CollectionSection() {
+function CollectionSection({ products }) {
+  if (!products.length) return <Spinner />;
+
   return (
     <div className="container pt-10">
       <img src="images/banner_mens.png" alt="men-banner" />
       <ProductsFilter />
       <ProductsList>
-        {Array.from({ length: 12 }).map((product, index) => (
-          <ProductCard key={index} product={product} />
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
         ))}
       </ProductsList>
       <div className="mx-auto mt-20 w-fit">

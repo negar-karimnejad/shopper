@@ -1,7 +1,9 @@
 import CollectionSection from '../components/product/CollectionSection';
+import { useProduct } from '../context/ProductContext';
 
 function Kids() {
-  return <CollectionSection />;
+  const { kidsProducts } = useProduct();
+  return <CollectionSection products={kidsProducts} />;
 }
 
 export default Kids;
