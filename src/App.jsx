@@ -1,7 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import { AuthProvider } from './context/AuthContext';
-import { CartProvider } from './context/CartContext';
 import { ProductProvider } from './context/ProductContext';
 import AboutUs from './pages/AboutUs';
 import AddProduct from './pages/AddProduct';
@@ -24,9 +22,9 @@ import Women from './pages/Women';
 
 function App() {
   return (
-    <AuthProvider>
+    // <AuthProvider>
       <ProductProvider>
-        <CartProvider>
+        {/* <CartProvider> */}
           <BrowserRouter>
             <Routes>
               <Route element={<AppLayout />}>
@@ -56,9 +54,9 @@ function App() {
               </Route>
             </Routes>
           </BrowserRouter>
-        </CartProvider>
+        {/* </CartProvider> */}
       </ProductProvider>
-    </AuthProvider>
+    // </AuthProvider>
   );
 }
 
