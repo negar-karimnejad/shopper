@@ -7,7 +7,7 @@ function Login() {
     <div className="flex items-center justify-center bg-rose-50 py-20 dark:bg-slate-900 ">
       <div className="rounded-md bg-white p-5 py-7 shadow dark:bg-slate-700">
         <h2 className="mb-5 text-3xl">Login</h2>
-        <form className="flex flex-col gap-5">
+        <form className="flex flex-col gap-5"z>
           <Input type="text" placeholder="Email address" />
           <Input type="password" placeholder="Password" />
           <Button variant="secondaryLessRound">Countinue</Button>

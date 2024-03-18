@@ -56,6 +56,7 @@ const ProductProvider = ({ children }) => {
       console.error('Error getting product:', error.message);
     }
   };
+  
   const addProduct = async (newProduct) => {
     try {
       await supabase.from('products').insert(newProduct).select();
