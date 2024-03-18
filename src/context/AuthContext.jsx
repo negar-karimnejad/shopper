@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
+import { useLocalStorageState } from '../hooks/useLocalStorage';
 import supabase from '../services/supabase';
 
 const AuthContex = createContext();
@@ -39,6 +40,12 @@ function AuthProvider({ children }) {
     initialState,
   );
 
+  const [storedUser, setStoredUser] = useLocalStorageState(null, 'user');
+
+  useEffect(() => {
+    dispatch({ type: 'set_user', payload: storedUser });
+  }, [storedUser]);
+
   const signUp = async (username, email, password) => {
     dispatch({ type: 'set_loading', payload: true });
     try {
@@ -53,6 +60,7 @@ function AuthProvider({ children }) {
         dispatch({ type: 'set_error', payload: error.message });
         throw error;
       }
+      setStoredUser(user);
       dispatch({ type: 'set_user', payload: user });
       dispatch({ type: 'set_loading', payload: false });
       return user;
@@ -76,6 +84,7 @@ function AuthProvider({ children }) {
         dispatch({ type: 'set_error', payload: error.message });
         throw error;
       }
+      setStoredUser(user);
       dispatch({ type: 'set_user', payload: user });
       dispatch({ type: 'set_loading', payload: false });
       return user;
@@ -85,6 +94,7 @@ function AuthProvider({ children }) {
       throw error;
     }
   };
+
   const signOut = async () => {
     try {
       let { error } = await supabase.auth.signOut();
@@ -93,6 +103,7 @@ function AuthProvider({ children }) {
         dispatch({ type: 'set_error', payload: error.message });
         throw error;
       }
+      setStoredUser(null);
       dispatch({ type: 'set_user', payload: null });
       return;
     } catch (error) {
@@ -113,8 +124,7 @@ function AuthProvider({ children }) {
 
 function useAuth() {
   const context = useContext(AuthContex);
-  if (!context)
-    throw new Error('Auth provider uses where that is not provided');
+  if (!context) throw new Error('useAuth must be used within a AuthProvider');
   return context;
 }
 
