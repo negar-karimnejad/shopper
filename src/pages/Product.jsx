@@ -17,7 +17,7 @@ function Product() {
     window.scrollTo(0, 0);
   }, [id]);
 
-  if (!product) return <Spinner />;
+  if (!product) return <Spinner title="Loading..."/>;
   return (
     <div className="container pt-10">
       <Breadcrumb

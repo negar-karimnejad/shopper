@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 function NewCollection() {
   const { newProducts } = useProduct();
 
-  if (!newProducts.length) return <Spinner />;
+  if (!newProducts.length) return <Spinner title="Loading..." />;
 
   return (
     <div className="container">

@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 function Popular() {
   const { popularProducts } = useProduct();
 
-  if (!popularProducts.length) return <Spinner />;
+  if (!popularProducts.length) return <Spinner title="Loading..." />;
   return (
     <div className="container">
       <SectionHeader title="popular in women" />

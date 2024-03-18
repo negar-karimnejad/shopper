@@ -5,7 +5,7 @@ import Spinner from '../Spinner';
 import Star from './Star';
 
 function ProductCard({ product }) {
-  if (!product) return <Spinner />;
+  if (!product) return <Spinner title="Loading..."/>;
 
   return (
     <div className="flex flex-col gap-5 overflow-hidden rounded-lg border pb-5 font-semibold shadow-md transition-all duration-300 hover:scale-105 dark:border-slate-700/50 dark:bg-slate-800 dark:font-normal">

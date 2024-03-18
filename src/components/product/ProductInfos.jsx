@@ -31,7 +31,7 @@ function ProductInfos() {
     // addToCart(newItem);
   };
 
-  if (!product) return <Spinner />;
+  if (!product) return <Spinner title="Loading..."/>;
   return (
     <div>
       <h2 className="text-3xl font-bold">{product.title} </h2>
