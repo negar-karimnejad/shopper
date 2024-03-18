@@ -1,18 +1,33 @@
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 import Button from '../Button';
 import DarkModeButton from '../DarkModeButton';
 import MobileMenu from './MobileMenu';
 import NavShoppingCartIcon from './NavShoppingCartIcon';
 
 function UserLinks() {
+  const { signOut, user } = useAuth();
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+    } catch (error) {
+      console.error('Error signing out:', error.message);
+    }
+  };
+  
   return (
     <>
       <div className="hidden items-center gap-4 lg:flex">
         <DarkModeButton />
         <NavShoppingCartIcon />
-        <Link to="/login">
-          <Button>Login</Button>
-        </Link>
+        {user?.session ? (
+          <Button onClick={handleSignOut}>Logout</Button>
+        ) : (
+          <Link to="/login">
+            <Button>Login</Button>
+          </Link>
+        )}
       </div>
 
       <MobileMenu />

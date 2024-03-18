@@ -57,7 +57,7 @@ function AuthProvider({ children }) {
       dispatch({ type: 'set_loading', payload: false });
       return user;
     } catch (error) {
-      console.error('Error signing out:', error.message);
+      console.error('Error signing up:', error.message);
       dispatch({ type: 'set_error', payload: error.message });
       throw error;
     }
@@ -80,6 +80,22 @@ function AuthProvider({ children }) {
       dispatch({ type: 'set_loading', payload: false });
       return user;
     } catch (error) {
+      console.error('Error signing in:', error.message);
+      dispatch({ type: 'set_error', payload: error.message });
+      throw error;
+    }
+  };
+  const signOut = async () => {
+    try {
+      let { error } = await supabase.auth.signOut();
+
+      if (error) {
+        dispatch({ type: 'set_error', payload: error.message });
+        throw error;
+      }
+      dispatch({ type: 'set_user', payload: null });
+      return;
+    } catch (error) {
       console.error('Error signing out:', error.message);
       dispatch({ type: 'set_error', payload: error.message });
       throw error;
@@ -87,7 +103,9 @@ function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContex.Provider value={{ signUp, signIn, user, loading, error }}>
+    <AuthContex.Provider
+      value={{ signOut, signUp, signIn, user, loading, error }}
+    >
       {children}
     </AuthContex.Provider>
   );
@@ -101,4 +119,3 @@ function useAuth() {
 }
 
 export { AuthProvider, useAuth };
-

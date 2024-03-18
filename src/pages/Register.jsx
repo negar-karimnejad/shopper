@@ -1,13 +1,15 @@
-import Input from '../components/Input';
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
-import { Link, redirect } from 'react-router-dom';
-import { useState } from 'react';
+import Input from '../components/Input';
+import Spinner from '../components/Spinner';
 import { useAuth } from '../context/AuthContext';
 
 function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const { signUp, user, loading } = useAuth();
 
@@ -20,10 +22,12 @@ function Register() {
     setPassword('');
   };
 
-  if (user?.role === 'authenticated') {
-    redirect('/login');
-  }
-  console.log(user);
+  useEffect(() => {
+    if (user?.session) return navigate('/login');
+  }, [navigate, user?.session]);
+
+  if (user?.session) return <Spinner title="Redirecting..." />;
+
   return (
     <div className="flex items-center justify-center bg-rose-50 py-10 dark:bg-slate-900 ">
       <div className="rounded-md bg-white p-5 py-7 shadow dark:bg-slate-700">
