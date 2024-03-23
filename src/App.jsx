@@ -20,38 +20,43 @@ import Products from './pages/Products';
 import Register from './pages/Register';
 import Women from './pages/Women';
 import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
     <AuthProvider>
       <ProductProvider>
-        {/* <CartProvider> */}
-        <BrowserRouter>
-          <Routes>
-            <Route element={<AppLayout />}>
-              <Route path="/" element={<Homepage />} />
-              <Route path="kids" element={<Kids />} />
-              <Route path="women" element={<Women />} />
-              <Route path="men" element={<Men />} />
-              <Route path="login" element={<Login />} />
-              <Route path="register" element={<Register />} />
-              <Route path="about-us" element={<AboutUs />} />
-              <Route path="conatct" element={<Conatct />} />
-              <Route path="offices" element={<Offices />} />
-              <Route path="create-product" element={<CreateProduct />} />
-              <Route path="products/:query" element={<Products />} />
-              <Route path="product/:id" element={<Product />} />
-              <Route path="cart" element={<Cart />} />
-              <Route path="*" element={<PageNotFound />} />
+        <CartProvider>
+          <BrowserRouter>
+            <Routes>
+              <Route element={<AppLayout />}>
+                <Route path="/" element={<Homepage />} />
+                <Route path="kids" element={<Kids />} />
+                <Route path="women" element={<Women />} />
+                <Route path="men" element={<Men />} />
+                <Route path="login" element={<Login />} />
+                <Route path="register" element={<Register />} />
+                <Route path="about-us" element={<AboutUs />} />
+                <Route path="conatct" element={<Conatct />} />
+                <Route path="offices" element={<Offices />} />
+                <Route path="create-product" element={<CreateProduct />} />
+                <Route path="products/:query" element={<Products />} />
+                <Route path="product/:id" element={<Product />} />
+                <Route path="cart" element={<Cart />} />
+                <Route path="*" element={<PageNotFound />} />
 
-              <Route element={<AdminPanel />}>
-                <Route index path="list-products" element={<ListProducts />} />
-                <Route path="add-product" element={<AddProduct />} />
+                <Route element={<AdminPanel />}>
+                  <Route
+                    index
+                    path="list-products"
+                    element={<ListProducts />}
+                  />
+                  <Route path="add-product" element={<AddProduct />} />
+                </Route>
               </Route>
-            </Route>
-          </Routes>
-        </BrowserRouter>
-        {/* </CartProvider> */}
+            </Routes>
+          </BrowserRouter>
+        </CartProvider>
       </ProductProvider>
     </AuthProvider>
   );

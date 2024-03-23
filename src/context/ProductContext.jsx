@@ -11,18 +11,18 @@ const initialState = {
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'getProducts':
+    case 'get_Products':
       return {
         ...state,
         products: action.payload,
       };
-    case 'getProduct':
+    case 'get_Product':
       return {
         ...state,
         product: action.payload,
       };
 
-    case 'addProduct':
+    case 'add_Product':
       return {
         ...state,
         products: [...state.products, action.payload],
@@ -40,7 +40,7 @@ const ProductProvider = ({ children }) => {
     const getProducts = async () => {
       try {
         let { data: products } = await supabase.from('products').select('*');
-        dispatch({ type: 'getProducts', payload: products });
+        dispatch({ type: 'get_Products', payload: products });
       } catch (error) {
         console.error('Error getting products:', error.message);
       }
@@ -51,16 +51,16 @@ const ProductProvider = ({ children }) => {
   const getProduct = async (id) => {
     try {
       const product = products.find((product) => product.id === Number(id));
-      dispatch({ type: 'getProduct', payload: product });
+      dispatch({ type: 'get_Product', payload: product });
     } catch (error) {
       console.error('Error getting product:', error.message);
     }
   };
-  
+
   const addProduct = async (newProduct) => {
     try {
       await supabase.from('products').insert(newProduct).select();
-      dispatch({ type: 'addProduct', payload: newProduct });
+      dispatch({ type: 'add_Product', payload: newProduct });
     } catch (error) {
       console.error('Error adding product:', error.message);
     }
