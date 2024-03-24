@@ -4,6 +4,7 @@ import { useCart } from '../../context/CartContext';
 
 function NavShoppingCartIcon() {
   const { state } = useCart();
+
   return (
     <div className="relative rounded-full bg-slate-200 p-2 dark:bg-slate-600">
       <Link to="cart">

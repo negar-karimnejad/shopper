@@ -6,12 +6,10 @@ import { useAuth } from './AuthContext';
 
 export const CartContext = createContext();
 
-const initialState = [];
+const initialState = {};
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'get_cart':
-      return { state: action.payload };
     case 'get_user_cart':
       return { state: action.payload };
     case 'add_to_cart':
@@ -24,21 +22,20 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
 const CartProvider = ({ children }) => {
   const [{ state }, dispatch] = useReducer(reducer, initialState);
 
-  useEffect(() => {
-    const getCart = async () => {
-      let { data: cart, error } = await supabase.from('cart').select('*');
-      if (error) {
-        console.error('Error while getting items from cart:', error.message);
-        return;
-      }
-      dispatch({ type: 'get_cart', payload: cart });
-    };
-    getCart();
-  }, []);
+  // useEffect(() => {
+  //   const getCart = async () => {
+  //     let { data: cart, error } = await supabase.from('cart').select('*');
+  //     if (error) {
+  //       console.error('Error while getting items from cart:', error.message);
+  //       return;
+  //     }
+  //     dispatch({ type: 'get_cart', payload: cart });
+  //   };
+  //   getCart();
+  // }, []);
 
   const { user } = useAuth();
 
@@ -72,6 +69,7 @@ const CartProvider = ({ children }) => {
         const existingItem = existInCart.find(
           (cartItem) => cartItem.items.id === item.items.id,
         );
+
         if (existingItem) {
           const { data: updatedItemData, error: updateError } = await supabase
             .from('cart')
@@ -117,7 +115,6 @@ const CartProvider = ({ children }) => {
     const filteredCart = state.filter((item) => item.id !== id);
     dispatch({ type: 'remove_from_cart', payload: filteredCart });
   };
-console.log(state);
   return (
     <CartContext.Provider value={{ state, addToCart, removeFromCart }}>
       {children}
