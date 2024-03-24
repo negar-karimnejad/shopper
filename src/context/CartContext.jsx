@@ -58,55 +58,54 @@ const CartProvider = ({ children }) => {
   }, [user?.user?.id]);
 
   const addToCart = async (item) => {
-    const { data: existInCart, error } = await supabase
-      .from('cart')
-      .select()
-      .eq('user_id', user?.user?.id);
-
-    if (error) {
-      throw error;
-    }
-
-    if (existInCart.length > 0) {
-      const existingItem = existInCart.find(cartItem => cartItem.items.id === item.items.id);
-      if (existingItem) {
-        const { data: updatedItemData, error: updateError } = await supabase
-          .from('cart')
-          .update({ quantity: existingItem.quantity + item.quantity })
-          .eq('id', existingItem.id)
-          .single();
-
-        if (updateError) {
-          throw updateError;
-        }
-
-        dispatch({ type: 'ADD_TO_CART', payload: updatedItemData });
-        return updatedItemData;
-      }
-    }
-      const { data, error } = await supabase
+    try {
+      const { data: existInCart, error: existInCartError } = await supabase
         .from('cart')
-        .update()
-        .eq('items', item.items)
-        .select();
+        .select()
+        .eq('user_id', user?.user?.id);
 
-      if (error) {
-        console.error('Error while adding item to cart:', error.message);
-        return;
+      if (existInCartError) {
+        throw existInCartError;
       }
 
-      dispatch({ type: 'add_to_cart', payload: item });
+      if (existInCart.length > 0) {
+        const existingItem = existInCart.find(
+          (cartItem) => cartItem.items.id === item.items.id,
+        );
+        if (existingItem) {
+          const { data: updatedItemData, error: updateError } = await supabase
+            .from('cart')
+            .update({ quantity: existingItem.quantity + item.quantity })
+            .eq('id', existingItem.id)
+            .single();
 
-      return data;
-    }
-    const { error } = await supabase.from('cart').insert(item).select();
+          if (updateError) {
+            throw updateError;
+          }
 
-    if (error) {
+          dispatch({ type: 'add_to_cart', payload: updatedItemData });
+          return updatedItemData;
+        }
+      }
+
+      const { data: insertedItemData, error: insertError } = await supabase
+        .from('cart')
+        .insert([{ ...item, user_id: user?.user?.id }])
+        .single();
+
+      if (insertError) {
+        throw insertError;
+      }
+
+      dispatch({ type: 'add_to_cart', payload: insertedItemData });
+
+      return insertedItemData;
+    } catch (error) {
       console.error('Error while adding item to cart:', error.message);
-      return;
+      return null;
     }
-    dispatch({ type: 'add_to_cart', payload: item });
   };
+
   const removeFromCart = async (id) => {
     const { error } = await supabase.from('cart').delete().eq('id', id);
 
@@ -118,7 +117,7 @@ const CartProvider = ({ children }) => {
     const filteredCart = state.filter((item) => item.id !== id);
     dispatch({ type: 'remove_from_cart', payload: filteredCart });
   };
-
+console.log(state);
   return (
     <CartContext.Provider value={{ state, addToCart, removeFromCart }}>
       {children}
