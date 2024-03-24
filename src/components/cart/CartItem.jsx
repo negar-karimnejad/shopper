@@ -11,11 +11,10 @@ const Td = ({ children, style }) => {
 };
 
 export default function CartItem({ item }) {
-  console.log(item);
   return (
     <>
       <Td style="whitespace-nowrap">
-        <img src={item.image} alt="" />
+        <img src={item.image} alt="" className='w-14 h-14 object-contain' />
       </Td>
       <Td>{item.title}</Td>
       <Td style="whitespace-nowrap">{formatCurrency(item?.price)}</Td>

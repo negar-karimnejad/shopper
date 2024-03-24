@@ -5,7 +5,8 @@ const heads = ['Product', 'Title', 'Price', 'Quantity', 'Total', 'Remove'];
 
 function CartItems() {
   const { state } = useCart();
-
+  console.log(state);
+  const items = state[0].items;
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto md:-mx-6 lg:-mx-8">
@@ -26,7 +27,7 @@ function CartItems() {
                 </tr>
               </thead>
               <tbody>
-                {state?.map((item) => (
+                {items?.map((item) => (
                   <tr
                     key={item.id}
                     className="border-b bg-white dark:bg-slate-900"

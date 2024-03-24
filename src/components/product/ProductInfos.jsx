@@ -28,10 +28,11 @@ function ProductInfos() {
     if (!user) {
       toast.error('Please Login first to continue');
     }
-    
+
     const newItem = {
       product_id: product.id,
       user_id: user.user.id,
+      items: [product],
     };
 
     addToCart(newItem);
