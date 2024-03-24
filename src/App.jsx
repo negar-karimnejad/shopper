@@ -20,6 +20,7 @@ import Products from './pages/Products';
 import Register from './pages/Register';
 import Women from './pages/Women';
 import { AuthProvider } from './context/AuthContext';
+import { Toaster } from 'react-hot-toast';
 import { CartProvider } from './context/CartContext';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     <AuthProvider>
       <ProductProvider>
         <CartProvider>
+          <Toaster />
           <BrowserRouter>
             <Routes>
               <Route element={<AppLayout />}>

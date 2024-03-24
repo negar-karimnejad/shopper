@@ -4,6 +4,9 @@ import ProductSize from './ProductSize';
 import Star from './Star';
 import Spinner from '../Spinner';
 import { formatCurrency } from '../../utilities/formatCurrency';
+import { useCart } from '../../context/CartContext';
+import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
 
 const StyledP = ({ title, description }) => {
   return (
@@ -17,21 +20,25 @@ const StyledP = ({ title, description }) => {
 };
 
 function ProductInfos() {
-  // const { addToCart } = useCart();
-  // const { user } = useAuth();
+  const { addToCart } = useCart();
+  const { user } = useAuth();
   const { product } = useProduct();
 
   const clickHandler = () => {
-    // const newItem = {
-    //   productId: id,
-    //   quantity: 1,
-    //   price: 123,
-    //   userId: '123',
-    // };
-    // addToCart(newItem);
+    if (!user) {
+      toast.error('Please Login first to continue');
+    }
+    
+    const newItem = {
+      product_id: product.id,
+      user_id: user.user.id,
+    };
+
+    addToCart(newItem);
   };
 
-  if (!product) return <Spinner title="Loading..."/>;
+  if (!product) return <Spinner title="Loading..." />;
+
   return (
     <div>
       <h2 className="text-3xl font-bold">{product.title} </h2>

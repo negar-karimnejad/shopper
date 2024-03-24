@@ -1,8 +1,11 @@
+import { useCart } from '../../context/CartContext';
 import CartItem from './CartItem';
 
 const heads = ['Product', 'Title', 'Price', 'Quantity', 'Total', 'Remove'];
 
 function CartItems() {
+  const { state } = useCart();
+
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto md:-mx-6 lg:-mx-8">
@@ -23,9 +26,14 @@ function CartItems() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="border-b bg-white dark:bg-slate-900">
-                  <CartItem />
-                </tr>
+                {state?.map((item) => (
+                  <tr
+                    key={item.id}
+                    className="border-b bg-white dark:bg-slate-900"
+                  >
+                    <CartItem item={item} />
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>

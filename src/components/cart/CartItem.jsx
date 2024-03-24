@@ -1,3 +1,5 @@
+import { formatCurrency } from '../../utilities/formatCurrency';
+
 const Td = ({ children, style }) => {
   return (
     <td
@@ -8,14 +10,15 @@ const Td = ({ children, style }) => {
   );
 };
 
-export default function CartItem() {
+export default function CartItem({ item }) {
+  console.log(item);
   return (
     <>
       <Td style="whitespace-nowrap">
-        <img src="images/cart_product_icon.png" alt="" />
+        <img src={item.image} alt="" />
       </Td>
-      <Td>Boys Orange Colourblocked Hooded Sweatshirt</Td>
-      <Td style="whitespace-nowrap">$120.5</Td>
+      <Td>{item.title}</Td>
+      <Td style="whitespace-nowrap">{formatCurrency(item?.price)}</Td>
       <Td style="whitespace-nowrap">
         <input
           defaultValue={1}
