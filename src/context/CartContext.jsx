@@ -25,18 +25,6 @@ const reducer = (state, action) => {
 const CartProvider = ({ children }) => {
   const [{ state }, dispatch] = useReducer(reducer, initialState);
 
-  // useEffect(() => {
-  //   const getCart = async () => {
-  //     let { data: cart, error } = await supabase.from('cart').select('*');
-  //     if (error) {
-  //       console.error('Error while getting items from cart:', error.message);
-  //       return;
-  //     }
-  //     dispatch({ type: 'get_cart', payload: cart });
-  //   };
-  //   getCart();
-  // }, []);
-
   const { user } = useAuth();
 
   useEffect(() => {
@@ -66,14 +54,14 @@ const CartProvider = ({ children }) => {
       }
 
       if (existInCart.length > 0) {
-        const existingItem = existInCart.find(
-          (cartItem) => cartItem.items.id === item.items.id,
+        const existingItem = existInCart[0].items.find(
+          (cartItem) => cartItem.id === item.product_id,
         );
 
         if (existingItem) {
           const { data: updatedItemData, error: updateError } = await supabase
             .from('cart')
-            .update({ quantity: existingItem.quantity + item.quantity })
+            .update({ quantity: existingItem.quantity + 1 })
             .eq('id', existingItem.id)
             .single();
 
@@ -88,7 +76,7 @@ const CartProvider = ({ children }) => {
 
       const { data: insertedItemData, error: insertError } = await supabase
         .from('cart')
-        .insert([{ ...item, user_id: user?.user?.id }])
+        .insert(item)
         .single();
 
       if (insertError) {

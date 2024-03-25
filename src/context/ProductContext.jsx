@@ -83,25 +83,23 @@ const ProductProvider = ({ children }) => {
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 4);
 
+  const value = {
+    addProduct,
+    getProduct,
+    products,
+    product,
+    menProducts,
+    womenProducts,
+    kidsProducts,
+    newProducts,
+    popularProducts,
+    offersProducts,
+    expensiveProducts,
+    cheapestProducts,
+  };
+
   return (
-    <ProductContext.Provider
-      value={{
-        addProduct,
-        getProduct,
-        products,
-        product,
-        menProducts,
-        womenProducts,
-        kidsProducts,
-        newProducts,
-        popularProducts,
-        offersProducts,
-        expensiveProducts,
-        cheapestProducts,
-      }}
-    >
-      {children}
-    </ProductContext.Provider>
+    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
   );
 };
 

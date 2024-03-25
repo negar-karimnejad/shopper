@@ -13,11 +13,12 @@ function Product() {
   const { id } = useParams();
 
   useEffect(() => {
-    getProduct(id);
     window.scrollTo(0, 0);
-  }, [id]);
+    getProduct(id);
+  }, [getProduct, id]);
 
-  if (!product) return <Spinner title="Loading..."/>;
+  if (!product) return <Spinner title="Loading..." />;
+
   return (
     <div className="container pt-10">
       <Breadcrumb
