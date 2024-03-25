@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useCallback, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import Breadcrumb from '../components/product/Breadcrumb';
@@ -6,16 +6,23 @@ import DescriptionAndReviews from '../components/product/DescriptionAndReviews';
 import ProductImages from '../components/product/ProductImages';
 import ProductInfos from '../components/product/ProductInfos';
 import RelatedProducts from '../components/product/RelatedProducts';
-import { useProduct } from '../context/ProductContext';
+import useProduct from '../context/ProductContext';
 
 function Product() {
   const { getProduct, product } = useProduct();
   const { id } = useParams();
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
+  const getProductFunc = useCallback(() => {
     getProduct(id);
   }, [getProduct, id]);
+
+  useEffect(() => {
+    getProductFunc();
+  }, [getProductFunc]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (!product) return <Spinner title="Loading..." />;
 

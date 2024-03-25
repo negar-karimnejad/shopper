@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useEffect, useReducer } from 'react';
+import { createContext, memo, useContext, useEffect, useReducer } from 'react';
 import supabase from '../services/supabase';
 
 const ProductContext = createContext();
@@ -109,4 +109,4 @@ const useProduct = () => {
     throw new Error('useProduct must be used within a ProductProvider');
   return context;
 };
-export { ProductProvider, useProduct };
+export default memo({ ProductProvider, useProduct });

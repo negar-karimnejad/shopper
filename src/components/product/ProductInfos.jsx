@@ -1,4 +1,4 @@
-import { useProduct } from '../../context/ProductContext';
+import useProduct  from '../../context/ProductContext';
 import Button from '../Button';
 import ProductSize from './ProductSize';
 import Star from './Star';

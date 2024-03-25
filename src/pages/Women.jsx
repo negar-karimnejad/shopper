@@ -1,5 +1,5 @@
 import CollectionSection from '../components/product/CollectionSection';
-import { useProduct } from '../context/ProductContext';
+import useProduct from '../context/ProductContext';
 const banner = 'images/banner_women.png';
 
 function Women() {
