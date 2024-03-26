@@ -1,12 +1,18 @@
 /* eslint-disable react-refresh/only-export-components */
 import supabase from '../services/supabase';
 
-import { createContext, useContext, useEffect, useReducer } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from 'react';
 import { useAuth } from './AuthContext';
 
 export const CartContext = createContext();
 
-const initialState = {};
+const initialState = [];
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -24,23 +30,26 @@ const reducer = (state, action) => {
 };
 const CartProvider = ({ children }) => {
   const [{ state }, dispatch] = useReducer(reducer, initialState);
-
   const { user } = useAuth();
+  const userId = user?.user?.id;
+
+  const getUserCart = useCallback(async () => {
+    let { data: userCart, error } = await supabase
+      .from('cart')
+      .select('*')
+      .eq('user_id', userId);
+      
+    dispatch({ type: 'get_user_cart', payload: userCart });
+
+    if (error) {
+      console.error('Error while getting items from cart:', error.message);
+      return;
+    }
+  }, [userId]);
 
   useEffect(() => {
-    const getUserCart = async () => {
-      let { data: userCart, error } = await supabase
-        .from('cart')
-        .select()
-        .eq('user_id', user?.user?.id);
-      if (error) {
-        console.error('Error while getting items from cart:', error.message);
-        return;
-      }
-      dispatch({ type: 'get_user_cart', payload: userCart });
-    };
     getUserCart();
-  }, [user?.user?.id]);
+  }, [getUserCart]);
 
   const addToCart = async (item) => {
     try {
@@ -54,8 +63,8 @@ const CartProvider = ({ children }) => {
       }
 
       if (existInCart.length > 0) {
-        const existingItem = existInCart[0].items.find(
-          (cartItem) => cartItem.id === item.product_id,
+        const existingItem = existInCart.find(
+          (cartItem) => cartItem.product_id === item.product_id,
         );
 
         if (existingItem) {
@@ -65,11 +74,11 @@ const CartProvider = ({ children }) => {
             .eq('id', existingItem.id)
             .single();
 
+          dispatch({ type: 'add_to_cart', payload: updatedItemData });
+          getUserCart();
           if (updateError) {
             throw updateError;
           }
-
-          dispatch({ type: 'add_to_cart', payload: updatedItemData });
           return updatedItemData;
         }
       }
@@ -84,7 +93,7 @@ const CartProvider = ({ children }) => {
       }
 
       dispatch({ type: 'add_to_cart', payload: insertedItemData });
-
+      getUserCart();
       return insertedItemData;
     } catch (error) {
       console.error('Error while adding item to cart:', error.message);

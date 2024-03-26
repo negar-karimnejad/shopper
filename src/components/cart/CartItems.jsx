@@ -1,11 +1,14 @@
 import { useCart } from '../../context/CartContext';
+import Spinner from '../Spinner';
 import CartItem from './CartItem';
 
 const heads = ['Product', 'Title', 'Price', 'Quantity', 'Total', 'Remove'];
 
 function CartItems() {
   const { state } = useCart();
-  console.log(state);
+
+  if (!state) return <Spinner title="Loading..." />;
+
   return (
     <div className="flex flex-col">
       <div className="overflow-x-auto md:-mx-6 lg:-mx-8">

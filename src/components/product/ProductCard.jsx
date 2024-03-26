@@ -3,9 +3,29 @@ import { formatCurrency } from '../../utilities/formatCurrency';
 import Button from '../Button';
 import Spinner from '../Spinner';
 import Star from './Star';
+import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
+import { useCart } from '../../context/CartContext';
 
 function ProductCard({ product }) {
-  if (!product) return <Spinner title="Loading..."/>;
+  const { user } = useAuth();
+  const { addToCart } = useCart();
+
+  const clickHandler = () => {
+    if (!user) {
+      toast.error('Please Login first to continue');
+    }
+
+    const newItem = {
+      product_id: product.id,
+      user_id: user.user.id,
+      items: [{ ...product, quantity: 1 }],
+    };
+
+    addToCart(newItem);
+  };
+  
+  if (!product) return <Spinner title="Loading..." />;
 
   return (
     <div className="flex flex-col gap-5 overflow-hidden rounded-lg border pb-5 font-semibold shadow-md transition-all duration-300 hover:scale-105 dark:border-slate-700/50 dark:bg-slate-800 dark:font-normal">
@@ -20,7 +40,9 @@ function ProductCard({ product }) {
         </div>
       </div>
       <div className="flex-1 px-5">
-        <Button variant="secondaryLessRound">Add To Cart</Button>
+        <Button onClick={clickHandler} variant="secondaryLessRound">
+          Add To Cart
+        </Button>
       </div>
     </div>
   );
