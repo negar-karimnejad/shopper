@@ -1,4 +1,4 @@
-import  useProduct  from '../../context/ProductContext';
+import { useProduct } from '../../context/ProductContext';
 
 function ProductImages() {
   const { product } = useProduct();

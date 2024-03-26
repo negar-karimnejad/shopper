@@ -1,4 +1,4 @@
-import  useProduct  from '../../context/ProductContext';
+import { useProduct } from '../../context/ProductContext';
 import SectionHeader from '../homepage/SectionHeader';
 import ProductCard from './ProductCard';
 import ProductsList from './ProductsList';

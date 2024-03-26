@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import CollectionSection from '../components/product/CollectionSection';
-import  useProduct  from '../context/ProductContext';
+import { useProduct } from '../context/ProductContext';
 
 function Products() {
   const { offersProducts, newProducts, expensiveProducts, cheapestProducts } =

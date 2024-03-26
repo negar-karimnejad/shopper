@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-import ProductProvider from './context/ProductContext';
+import { ProductProvider } from './context/ProductContext';
 import AboutUs from './pages/AboutUs';
 import AddProduct from './pages/AddProduct';
 import AdminPanel from './pages/AdminPanel';

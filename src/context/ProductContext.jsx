@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, memo, useContext, useEffect, useReducer } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 import supabase from '../services/supabase';
 
 const ProductContext = createContext();
@@ -51,9 +51,10 @@ const ProductProvider = ({ children }) => {
   const getProduct = async (id) => {
     try {
       const product = products.find((product) => product.id === Number(id));
-      dispatch({ type: 'get_Product', payload: product });
+      return product;
     } catch (error) {
       console.error('Error getting product:', error.message);
+      return null;
     }
   };
 
@@ -83,23 +84,26 @@ const ProductProvider = ({ children }) => {
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 4);
 
-  const value = {
-    addProduct,
-    getProduct,
-    products,
-    product,
-    menProducts,
-    womenProducts,
-    kidsProducts,
-    newProducts,
-    popularProducts,
-    offersProducts,
-    expensiveProducts,
-    cheapestProducts,
-  };
-
   return (
-    <ProductContext.Provider value={value}>{children}</ProductContext.Provider>
+    <ProductContext.Provider
+      value={{
+        addProduct,
+        getProduct,
+        products,
+        product,
+        menProducts,
+        womenProducts,
+        kidsProducts,
+        newProducts,
+        popularProducts,
+        offersProducts,
+        expensiveProducts,
+        cheapestProducts,
+        dispatch
+      }}
+    >
+      {children}
+    </ProductContext.Provider>
   );
 };
 
@@ -109,4 +113,4 @@ const useProduct = () => {
     throw new Error('useProduct must be used within a ProductProvider');
   return context;
 };
-export default memo({ ProductProvider, useProduct });
+export { ProductProvider, useProduct };
