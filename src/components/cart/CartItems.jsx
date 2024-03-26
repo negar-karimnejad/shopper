@@ -6,7 +6,6 @@ const heads = ['Product', 'Title', 'Price', 'Quantity', 'Total', 'Remove'];
 
 function CartItems() {
   const { state } = useCart();
-
   if (!state) return <Spinner title="Loading..." />;
 
   return (
@@ -30,12 +29,12 @@ function CartItems() {
               </thead>
               <tbody>
                 {state?.map((item) =>
-                  item?.items?.map((item) => (
+                  item?.items?.map((product) => (
                     <tr
-                      key={item.id}
+                      key={product.id}
                       className="border-b bg-white dark:bg-slate-900"
                     >
-                      <CartItem item={item} />
+                      <CartItem product={product} item={item} />
                     </tr>
                   )),
                 )}

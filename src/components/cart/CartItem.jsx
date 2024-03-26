@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { formatCurrency } from '../../utilities/formatCurrency';
+import Spinner from '../Spinner';
 
 const Td = ({ children, style }) => {
   return (
@@ -11,21 +12,27 @@ const Td = ({ children, style }) => {
   );
 };
 
-export default function CartItem({ item }) {
+export default function Cartproduct({ product, item }) {
+  if (!product) return <Spinner title="Loading..." />;
+
   return (
     <>
       <Td style="whitespace-nowrap">
-        <Link to={`/product/${item.id}`}>
-          <img src={item.image} alt="" className="h-14 w-14 object-contain" />
+        <Link to={`/product/${product.id}`}>
+          <img
+            src={product.image}
+            alt=""
+            className="h-14 w-14 object-contain"
+          />
         </Link>
       </Td>
       <Td>
-        <Link to={`/product/${item.id}`}>{item.title}</Link>
+        <Link to={`/product/${product.id}`}>{product.title}</Link>
       </Td>
-      <Td style="whitespace-nowrap">{formatCurrency(item?.price)}</Td>
+      <Td style="whitespace-nowrap">{formatCurrency(product?.price)}</Td>
       <Td style="whitespace-nowrap">
         <input
-          defaultValue={1}
+          defaultValue={item.quantity}
           type="text"
           className="h-8 w-8 border text-center font-semibold outline-none dark:text-slate-800"
         />

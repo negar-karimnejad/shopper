@@ -32,7 +32,8 @@ function ProductInfos() {
     const newItem = {
       product_id: product.id,
       user_id: user.user.id,
-      items: [{ ...product, quantity: 1 }],
+      items: [{ ...product }],
+      quantity: 1,
     };
 
     addToCart(newItem);

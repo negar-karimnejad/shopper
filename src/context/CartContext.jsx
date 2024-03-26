@@ -38,7 +38,7 @@ const CartProvider = ({ children }) => {
       .from('cart')
       .select('*')
       .eq('user_id', userId);
-      
+
     dispatch({ type: 'get_user_cart', payload: userCart });
 
     if (error) {
@@ -64,22 +64,31 @@ const CartProvider = ({ children }) => {
 
       if (existInCart.length > 0) {
         const existingItem = existInCart.find(
-          (cartItem) => cartItem.product_id === item.product_id,
+          (cartItem) => Number(cartItem.product_id) === Number(item.product_id),
         );
-
         if (existingItem) {
-          const { data: updatedItemData, error: updateError } = await supabase
-            .from('cart')
-            .update({ quantity: existingItem.quantity + 1 })
-            .eq('id', existingItem.id)
-            .single();
+          const updatedQuantity = existingItem.quantity + 1;
 
-          dispatch({ type: 'add_to_cart', payload: updatedItemData });
-          getUserCart();
-          if (updateError) {
-            throw updateError;
+          try {
+            const { data: updatedItemData, error: updateError } = await supabase
+              .from('cart')
+              .update({ quantity: updatedQuantity })
+              .eq('id', existingItem.id)
+              .single();
+
+            if (updateError) {
+              throw updateError;
+            }
+
+            dispatch({ type: 'update_cart_item', payload: updatedItemData });
+
+            // Refresh cart after update
+            getUserCart();
+
+            return updatedItemData;
+          } catch (error) {
+            console.error('Error updating item quantity:', error.message);
           }
-          return updatedItemData;
         }
       }
 
@@ -93,6 +102,7 @@ const CartProvider = ({ children }) => {
       }
 
       dispatch({ type: 'add_to_cart', payload: insertedItemData });
+
       getUserCart();
       return insertedItemData;
     } catch (error) {
