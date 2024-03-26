@@ -1,3 +1,4 @@
+import { MdOutlineArrowLeft, MdOutlineArrowRight } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { formatCurrency } from '../../utilities/formatCurrency';
@@ -6,7 +7,7 @@ import Spinner from '../Spinner';
 const Td = ({ children, style }) => {
   return (
     <td
-      className={`${style} px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100`}
+      className={`${style} px-6 py-1 text-sm font-light text-gray-900 dark:text-slate-100`}
     >
       {children}
     </td>
@@ -14,8 +15,8 @@ const Td = ({ children, style }) => {
 };
 
 export default function Cartproduct({ product, item }) {
-  const { removeFromCart } = useCart();
-  
+  const { removeFromCart, decrementQuantity, incrementQuantity } = useCart();
+
   if (!product) return <Spinner title="Loading..." />;
 
   return (
@@ -33,12 +34,22 @@ export default function Cartproduct({ product, item }) {
         <Link to={`/product/${product.id}`}>{product.title}</Link>
       </Td>
       <Td style="whitespace-nowrap">{formatCurrency(product?.price)}</Td>
-      <Td style="whitespace-nowrap">
-        <input
-          defaultValue={item.quantity}
-          type="text"
-          className="h-8 w-8 border text-center font-semibold outline-none dark:text-slate-800"
-        />
+      <Td style="whitespace-nowrap flex items-center pt-4">
+        <div
+          className="cursor-pointer transition-all hover:text-rose-500"
+          onClick={() => decrementQuantity(item.id)}
+        >
+          <MdOutlineArrowLeft size={25} />
+        </div>
+        <div className="flex h-8 w-8 items-center justify-center rounded-md border font-semibold">
+          {item.quantity}
+        </div>
+        <div
+          className="cursor-pointer transition-all hover:text-rose-500"
+          onClick={() => incrementQuantity(item.id)}
+        >
+          <MdOutlineArrowRight size={25} />
+        </div>
       </Td>
       <Td style="whitespace-nowrap">
         {formatCurrency(product?.price * item.quantity)}

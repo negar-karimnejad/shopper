@@ -32,6 +32,7 @@ const CartProvider = ({ children }) => {
   const { user } = useAuth();
   const userId = user?.user?.id;
 
+  // GET USER CART
   const getUserCart = useCallback(async () => {
     let { data: userCart, error } = await supabase
       .from('cart')
@@ -50,6 +51,7 @@ const CartProvider = ({ children }) => {
     getUserCart();
   }, [getUserCart]);
 
+  // ADD ITEM TO CART
   const addToCart = async (item) => {
     try {
       const { data: existInCart, error: existInCartError } = await supabase
@@ -110,22 +112,75 @@ const CartProvider = ({ children }) => {
     }
   };
 
+  // REMOVE ITEM FROM CART
   const removeFromCart = async (id) => {
-    const { data } = await supabase.from('cart').select().eq('id', id);
-    if (data[0].quantity > 1) {
-      const { data: updatedData } = await supabase
-        .from('cart')
-        .update({ quantity: data[0].quantity - 1 })
-        .eq('id', data[0].id)
-        .single();
-      dispatch({ type: 'remove_from_cart', payload: updatedData });
-      getUserCart();
-    } else {
-      await supabase.from('cart').delete().eq('id', data[0].id);
+    const { data, error } = await supabase.from('cart').delete().eq('id', id);
 
-      const filteredCart = state.filter((item) => item.id !== id);
-      dispatch({ type: 'remove_from_cart', payload: filteredCart });
+    if (error) {
+      console.error(error);
+      throw new Error('Product could not be deleted');
     }
+    const filteredCart = state.filter((item) => item.id !== id);
+    dispatch({ type: 'remove_from_cart', payload: filteredCart });
+    return data;
+  };
+
+  // UPDATE CART QUANTITY
+  const decrementQuantity = async (id) => {
+    const { data, error: existInCartError } = await supabase
+      .from('cart')
+      .select()
+      .eq('id', id);
+    if (existInCartError) {
+      throw existInCartError;
+    }
+
+    if (data[0].quantity <= 1) {
+      const { error } = await supabase.from('cart').delete().eq('id', id);
+      getUserCart();
+
+      if (error) {
+        console.error('Error while removing item from cart:', error.message);
+        return;
+      }
+    }
+
+    const { data: updatedData, error: updateError } = await supabase
+      .from('cart')
+      .update({ quantity: data[0].quantity - 1 })
+      .eq('id', id)
+      .single();
+
+    if (updateError) {
+      throw updateError;
+    }
+
+    dispatch({ type: 'remove_from_cart', payload: updatedData });
+    getUserCart();
+  };
+
+  const incrementQuantity = async (id) => {
+    const { data, error: existInCartError } = await supabase
+      .from('cart')
+      .select()
+      .eq('id', id);
+
+    if (existInCartError) {
+      throw existInCartError;
+    }
+
+    const { data: updatedData, error: updateError } = await supabase
+      .from('cart')
+      .update({ quantity: data[0].quantity + 1 })
+      .eq('id', id)
+      .single();
+
+    if (updateError) {
+      throw updateError;
+    }
+
+    dispatch({ type: 'remove_from_cart', payload: updatedData });
+    getUserCart();
   };
 
   const totalQuantity = state
@@ -142,7 +197,15 @@ const CartProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ state, totalQuantity, totalPrice, addToCart, removeFromCart }}
+      value={{
+        totalQuantity,
+        totalPrice,
+        state,
+        addToCart,
+        decrementQuantity,
+        incrementQuantity,
+        removeFromCart,
+      }}
     >
       {children}
     </CartContext.Provider>
