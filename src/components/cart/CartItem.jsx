@@ -15,6 +15,7 @@ const Td = ({ children, style }) => {
 
 export default function Cartproduct({ product, item }) {
   const { removeFromCart } = useCart();
+  
   if (!product) return <Spinner title="Loading..." />;
 
   return (
@@ -23,7 +24,7 @@ export default function Cartproduct({ product, item }) {
         <Link to={`/product/${product.id}`}>
           <img
             src={product.image}
-            alt=""
+            alt={product.title}
             className="h-14 w-14 object-contain"
           />
         </Link>
@@ -45,7 +46,7 @@ export default function Cartproduct({ product, item }) {
       <Td style="whitespace-nowrap">
         <span
           onClick={() => removeFromCart(item.id)}
-          className="cursor-pointer text-2xl font-medium transition-all hover:text-rose-500"
+          className="cursor-pointer text-2xl font-medium transition-all hover:text-rose-500 disabled:opacity-50"
         >
           &times;
         </span>
