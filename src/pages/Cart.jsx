@@ -3,15 +3,6 @@ import CartTotals from '../components/cart/CartTotals';
 import Coupon from '../components/cart/Coupon';
 
 function Cart() {
-  // const { getCart, cart } = useCart();
-  // const { user } = useAuth();
-
-  // useEffect(() => {
-  //   getCart(user.id);
-  // }, [getCart, user.id]);
-
-  // console.log(cart);
-
   return (
     <div className="container pt-10">
       <CartItems />

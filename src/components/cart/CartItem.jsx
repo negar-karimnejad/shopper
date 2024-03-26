@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { formatCurrency } from '../../utilities/formatCurrency';
 
 const Td = ({ children, style }) => {
@@ -14,9 +15,13 @@ export default function CartItem({ item }) {
   return (
     <>
       <Td style="whitespace-nowrap">
-        <img src={item.image} alt="" className='w-14 h-14 object-contain' />
+        <Link to={`/product/${item.id}`}>
+          <img src={item.image} alt="" className="h-14 w-14 object-contain" />
+        </Link>
       </Td>
-      <Td>{item.title}</Td>
+      <Td>
+        <Link to={`/product/${item.id}`}>{item.title}</Link>
+      </Td>
       <Td style="whitespace-nowrap">{formatCurrency(item?.price)}</Td>
       <Td style="whitespace-nowrap">
         <input

@@ -9,19 +9,13 @@ import RelatedProducts from '../components/product/RelatedProducts';
 import { useProduct } from '../context/ProductContext';
 
 function Product() {
-  const { getProduct, product, dispatch } = useProduct();
+  const { getProduct, product } = useProduct();
   const { id } = useParams();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    const fetchData = async () => {
-      const fetchedProduct = await getProduct(id);
-      dispatch({ type: 'get_Product', payload: fetchedProduct });
-    };
-
-    fetchData();
-  }, [getProduct, id, dispatch]);
+    getProduct(id);
+  }, [getProduct, id]);
 
   if (!product) return <Spinner title="Loading..." />;
 

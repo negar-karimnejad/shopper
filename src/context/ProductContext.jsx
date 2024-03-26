@@ -1,5 +1,11 @@
 /* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useEffect, useReducer } from 'react';
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useReducer,
+} from 'react';
 import supabase from '../services/supabase';
 
 const ProductContext = createContext();
@@ -48,15 +54,14 @@ const ProductProvider = ({ children }) => {
     getProducts();
   }, []);
 
-  const getProduct = async (id) => {
-    try {
+  const getProduct = useCallback(
+    async (id) => {
       const product = products.find((product) => product.id === Number(id));
+      dispatch({ type: 'get_Product', payload: product });
       return product;
-    } catch (error) {
-      console.error('Error getting product:', error.message);
-      return null;
-    }
-  };
+    },
+    [products],
+  );
 
   const addProduct = async (newProduct) => {
     try {
@@ -99,7 +104,7 @@ const ProductProvider = ({ children }) => {
         offersProducts,
         expensiveProducts,
         cheapestProducts,
-        dispatch
+        dispatch,
       }}
     >
       {children}
