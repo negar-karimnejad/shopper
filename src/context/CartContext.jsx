@@ -12,38 +12,42 @@ import { useAuth } from './AuthContext';
 
 export const CartContext = createContext();
 
-const initialState = [];
+const initialState = {
+  state: [],
+  loading: false,
+};
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'get_user_cart':
-      return { state: action.payload };
     case 'add_to_cart':
-      return { state: action.payload };
-
     case 'remove_from_cart':
-      return { state: action.payload };
-
+      return { ...state, state: action.payload }; // Update items
+    case 'set_loading':
+      return { ...state, loading: action.payload }; // Set loading state
     default:
       return state;
   }
 };
 const CartProvider = ({ children }) => {
-  const [{ state }, dispatch] = useReducer(reducer, initialState);
+  const [{ state, loading }, dispatch] = useReducer(reducer, initialState);
   const { user } = useAuth();
   const userId = user?.user?.id;
 
   const getUserCart = useCallback(async () => {
-    let { data: userCart, error } = await supabase
-      .from('cart')
-      .select('*')
-      .eq('user_id', userId);
+    try {
+      dispatch({ type: 'set_loading', payload: true }); // Set loading state to true
+      let { data: userCart, error } = await supabase
+        .from('cart')
+        .select('*')
+        .eq('user_id', userId);
 
-    dispatch({ type: 'get_user_cart', payload: userCart });
-
-    if (error) {
-      console.error('Error while getting items from cart:', error.message);
-      return;
+      dispatch({ type: 'get_user_cart', payload: userCart });
+      if (error) {
+        console.error('Error while getting items from cart:', error.message);
+      }
+    } finally {
+      dispatch({ type: 'set_loading', payload: false }); // Set loading state to false regardless of success or failure
     }
   }, [userId]);
 
@@ -53,6 +57,7 @@ const CartProvider = ({ children }) => {
 
   const addToCart = async (item) => {
     try {
+      dispatch({ type: 'set_loading', payload: true }); // Set loading state to true
       const { data: existInCart, error: existInCartError } = await supabase
         .from('cart')
         .select()
@@ -108,22 +113,98 @@ const CartProvider = ({ children }) => {
     } catch (error) {
       console.error('Error while adding item to cart:', error.message);
       return null;
+    } finally {
+      dispatch({ type: 'set_loading', payload: false }); // Set loading state to false regardless of success or failure
     }
   };
 
   const removeFromCart = async (id) => {
-    const { error } = await supabase.from('cart').delete().eq('id', id);
+    try {
+      dispatch({ type: 'set_loading', payload: true }); // Set loading state to true
+      const { data, error: existInCartError } = await supabase
+        .from('cart')
+        .select()
+        .eq('id', id);
 
-    if (error) {
-      console.error('Error while removing item from cart:', error.message);
-      return;
+      if (existInCartError) {
+        throw existInCartError;
+      }
+
+      if (!data || data.length === 0) {
+        console.log('Item not found in cart.');
+        return;
+      }
+
+      const cartItem = data[0];
+
+      let updatedItemData;
+
+      if (cartItem.quantity > 1) {
+        const updatedQuantity = cartItem.quantity - 1;
+
+        const { data: updatedData, error: updateError } = await supabase
+          .from('cart')
+          .update({ quantity: updatedQuantity })
+          .eq('id', cartItem.id)
+          .single();
+
+        if (updateError) {
+          throw updateError;
+        }
+
+        updatedItemData = updatedData;
+        dispatch({ type: 'update_cart_item', payload: updatedItemData });
+        getUserCart();
+      } else {
+        const { error } = await supabase
+          .from('cart')
+          .delete()
+          .eq('id', cartItem.id);
+
+        if (error) {
+          console.error('Error while removing item from cart:', error.message);
+          return;
+        }
+
+        updatedItemData = null; // Indicate item removed
+      }
+
+      dispatch({ type: 'update_cart_item', payload: updatedItemData });
+
+      // Refresh cart after update
+      getUserCart();
+
+      return updatedItemData;
+    } catch (error) {
+      console.error('Error removing item from cart:', error.message);
+    } finally {
+      dispatch({ type: 'set_loading', payload: false }); // Set loading state to false regardless of success or failure
     }
-
-    const filteredCart = state.filter((item) => item.id !== id);
-    dispatch({ type: 'remove_from_cart', payload: filteredCart });
   };
+
+  const totalQuantity = state
+    ? state.reduce((total, cartItem) => total + cartItem.quantity, 0)
+    : 0;
+
+  const totalPrice = state
+    ? state.reduce((total, cartItem) => {
+        const itemPrice = cartItem.items[0].price;
+        const itemQuantity = cartItem.quantity;
+        return total + itemPrice * itemQuantity;
+      }, 0)
+    : 0;
+
   return (
-    <CartContext.Provider value={{ state, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        state,
+        loading,
+        totalQuantity,
+        totalPrice,
+        addToCart,
+        removeFromCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
 import { formatCurrency } from '../../utilities/formatCurrency';
 import Spinner from '../Spinner';
 
@@ -13,6 +14,7 @@ const Td = ({ children, style }) => {
 };
 
 export default function Cartproduct({ product, item }) {
+  const { removeFromCart } = useCart();
   if (!product) return <Spinner title="Loading..." />;
 
   return (
@@ -37,9 +39,14 @@ export default function Cartproduct({ product, item }) {
           className="h-8 w-8 border text-center font-semibold outline-none dark:text-slate-800"
         />
       </Td>
-      <Td style="whitespace-nowrap">$120.5</Td>
       <Td style="whitespace-nowrap">
-        <span className="cursor-pointer text-2xl font-medium transition-all hover:text-rose-500">
+        {formatCurrency(product?.price * item.quantity)}
+      </Td>
+      <Td style="whitespace-nowrap">
+        <span
+          onClick={() => removeFromCart(item.id)}
+          className="cursor-pointer text-2xl font-medium transition-all hover:text-rose-500"
+        >
           &times;
         </span>
       </Td>

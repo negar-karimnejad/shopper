@@ -6,15 +6,19 @@ import Star from './Star';
 import { useAuth } from '../../context/AuthContext';
 import toast from 'react-hot-toast';
 import { useCart } from '../../context/CartContext';
+import { useState } from 'react';
 
 function ProductCard({ product }) {
   const { user } = useAuth();
   const { addToCart } = useCart();
+  const [loading, setLoading] = useState(false);
 
-  const clickHandler = () => {
+  const clickHandler = async () => {
     if (!user) {
       toast.error('Please Login first to continue');
+      return;
     }
+    setLoading(true); 
 
     const newItem = {
       product_id: product.id,
@@ -23,7 +27,13 @@ function ProductCard({ product }) {
       quantity: 1,
     };
 
-    addToCart(newItem);
+    try {
+      await addToCart(newItem);
+    } catch (error) {
+      console.error('Error adding item to cart:', error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!product) return <Spinner title="Loading..." />;
@@ -41,8 +51,12 @@ function ProductCard({ product }) {
         </div>
       </div>
       <div className="flex-1 px-5">
-        <Button onClick={clickHandler} variant="secondaryLessRound">
-          Add To Cart
+        <Button
+          disabled={loading}
+          onClick={clickHandler}
+          variant="secondaryLessRound"
+        >
+          {loading ? 'Adding...' : 'Add To Cart'}
         </Button>
       </div>
     </div>
