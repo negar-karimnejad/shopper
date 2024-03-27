@@ -31,7 +31,7 @@ function NewsLetter() {
             </label>
             <div className="mt-5 flex rounded-full border-2 bg-white pl-5">
               <input
-                className="text-slate-600 outline-none"
+                className="text-slate-600 outline-none w-full"
                 type="email"
                 placeholder="Your email id"
                 value={email}
