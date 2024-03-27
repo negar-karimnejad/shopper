@@ -7,6 +7,7 @@ import {
   useReducer,
 } from 'react';
 import supabase from '../services/supabase';
+import toast from 'react-hot-toast';
 
 const ProductContext = createContext();
 
@@ -32,6 +33,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         products: [...state.products, action.payload],
+      };
+    case 'remove_Product':
+      return {
+        ...state,
+        products: [action.payload],
       };
 
     default:
@@ -72,6 +78,25 @@ const ProductProvider = ({ children }) => {
     }
   };
 
+  const removeProduct = async (id) => {
+    try {
+      const { error } = await supabase.from('products').delete().eq('id', id);
+
+      if (error) {
+        console.error(error);
+        toast.error('Product could not be deleted');
+        throw new Error('Product could not be deleted');
+      }
+
+      toast.success('Product removed from list');
+      const filteredProducts = products.filter((item) => item.id !== id);
+
+      dispatch({ type: 'remove_Product', payload: filteredProducts });
+    } catch (error) {
+      console.error('Error adding product:', error.message);
+    }
+  };
+
   // Sort products according by: offers, new, expensive, cheapest, kids, men, women, popular
 
   const offersProducts = products.slice().sort((a, b) => b.rating - a.rating);
@@ -94,6 +119,7 @@ const ProductProvider = ({ children }) => {
       value={{
         addProduct,
         getProduct,
+        removeProduct,
         products,
         product,
         menProducts,
