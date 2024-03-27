@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 const Td = ({ children, style }) => {
   return (
     <td
-      className={`${style} px-6 py-1 text-sm font-light text-gray-900 dark:text-slate-100`}
+      className={`${style} px-6 py-2 text-sm font-light text-gray-900 dark:text-slate-100`}
     >
       {children}
     </td>
@@ -34,7 +34,7 @@ export default function Cartproduct({ product, item }) {
         <Link to={`/product/${product.id}`}>{product.title}</Link>
       </Td>
       <Td style="whitespace-nowrap">{formatCurrency(product?.price)}</Td>
-      <Td style="whitespace-nowrap flex items-center pt-4">
+      <Td style="whitespace-nowrap flex items-center pt-5">
         <div
           className="cursor-pointer transition-all hover:text-rose-500"
           onClick={() => decrementQuantity(item.id)}

@@ -1,12 +1,13 @@
+import { useState } from 'react';
+import toast from 'react-hot-toast';
+import { useAuth } from '../../context/AuthContext';
+import { useCart } from '../../context/CartContext';
 import { useProduct } from '../../context/ProductContext';
+import { formatCurrency } from '../../utilities/formatCurrency';
 import Button from '../Button';
+import Spinner from '../Spinner';
 import ProductSize from './ProductSize';
 import Star from './Star';
-import Spinner from '../Spinner';
-import { formatCurrency } from '../../utilities/formatCurrency';
-import { useCart } from '../../context/CartContext';
-import { useAuth } from '../../context/AuthContext';
-import toast from 'react-hot-toast';
 
 const StyledP = ({ title, description }) => {
   return (
@@ -20,14 +21,18 @@ const StyledP = ({ title, description }) => {
 };
 
 function ProductInfos() {
-  const { addToCart } = useCart();
+  const [loading, setLoading] = useState(false);
+
   const { user } = useAuth();
   const { product } = useProduct();
+  const { addToCart } = useCart();
 
-  const clickHandler = () => {
+  const clickHandler = async () => {
     if (!user) {
       toast.error('Please Login first to continue');
+      return;
     }
+    setLoading(true);
 
     const newItem = {
       product_id: product.id,
@@ -36,7 +41,13 @@ function ProductInfos() {
       quantity: 1,
     };
 
-    addToCart(newItem);
+    try {
+      await addToCart(newItem);
+    } catch (error) {
+      console.error('Error adding item to cart:', error.message);
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (!product) return <Spinner title="Loading..." />;
@@ -51,8 +62,12 @@ function ProductInfos() {
       <p>{product.description}</p>
       <ProductSize />
       <div className="my-8 w-40">
-        <Button onClick={clickHandler} variant="secondaryLessRound">
-          ADD TO CART
+        <Button
+          disabled={loading}
+          onClick={clickHandler}
+          variant="secondaryLessRound"
+        >
+          {loading ? 'Adding...' : 'Add To Cart'}
         </Button>
       </div>
       <StyledP title="Category" description={product.category} />
