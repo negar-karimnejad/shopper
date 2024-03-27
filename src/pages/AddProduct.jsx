@@ -19,12 +19,12 @@ function AddProduct() {
     if (!title.trim() || !price.trim() || !category.trim() || !image) return;
 
     const newProduct = {
-      id: 100,
+      id: Math.floor(Math.random() * 1000),
       title,
       price,
       image,
       category,
-      rating: 1,
+      rating: 1.2,
       description,
       size: 's',
     };

@@ -1,9 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { HiServerStack, HiShoppingCart } from 'react-icons/hi2';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
+import Spinner from '../components/Spinner';
+import { useAuth } from '../context/AuthContext';
 
 function AdminPanel() {
   const [active, setActive] = useState('list-products');
+  const navigate = useNavigate();
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (!user) return navigate('/login');
+  }, [navigate, user]);
+
+  if (!user) return <Spinner title="Redirecting..." />;
+
   return (
     <div className="flex bg-slate-100 max-md:flex-col">
       <div className="flex shrink-0 gap-5 bg-slate-100 p-5 dark:border-gray-900 dark:bg-slate-950 max-md:justify-center md:flex-col md:border-r-2 md:py-10">

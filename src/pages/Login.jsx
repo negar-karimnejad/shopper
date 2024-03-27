@@ -13,8 +13,8 @@ function Login() {
 
   const navigate = useNavigate();
 
-  const { signIn, user, loading, error } = useAuth();
-  console.log(error);
+  const { signIn, user, loading } = useAuth();
+
   const submitHandler = (e) => {
     e.preventDefault();
     if ((!email, !password)) return;
@@ -29,11 +29,11 @@ function Login() {
       setPassword('');
     }
   };
-  
+
   useEffect(() => {
     if (user?.session) return navigate('/');
   }, [navigate, user?.session]);
-  console.log(user);
+
   if (user?.session) return <Spinner title="Redirecting..." />;
   return (
     <div className="flex items-center justify-center bg-rose-50 py-20 dark:bg-slate-900 ">
