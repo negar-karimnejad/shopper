@@ -28,7 +28,7 @@ function AddProduct() {
       description,
       size: 's',
     };
-    console.log(newProduct);
+
     setLoading(true);
     try {
       await addProduct(newProduct);
@@ -36,6 +36,11 @@ function AddProduct() {
       console.error('Error while adding new product');
     } finally {
       setLoading(false);
+      setTitle('');
+      setDescription('');
+      setPrice('');
+      setImage('');
+      setCategory('');
     }
   };
 

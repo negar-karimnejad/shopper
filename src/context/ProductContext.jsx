@@ -71,7 +71,6 @@ const ProductProvider = ({ children }) => {
   );
 
   const addProduct = async (newProduct) => {
-    console.log(newProduct);
     try {
       const { error } = await supabase
         .from('products')

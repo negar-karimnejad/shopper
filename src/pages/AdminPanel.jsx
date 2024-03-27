@@ -1,17 +1,17 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { HiServerStack, HiShoppingCart } from 'react-icons/hi2';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import { Link, Outlet, redirect } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import { useAuth } from '../context/AuthContext';
 
 function AdminPanel() {
-  const [active, setActive] = useState('list-products');
-  const navigate = useNavigate();
+  const pathname = document.location.pathname;
+  const [active, setActive] = useState(pathname);
   const { user } = useAuth();
 
-  useEffect(() => {
-    if (!user) return navigate('/login');
-  }, [navigate, user]);
+  if (!user) {
+    redirect('/login');
+  }
 
   if (!user) return <Spinner title="Redirecting..." />;
 
@@ -19,8 +19,8 @@ function AdminPanel() {
     <div className="flex bg-slate-100 max-md:flex-col">
       <div className="flex shrink-0 gap-5 bg-slate-100 p-5 dark:border-gray-900 dark:bg-slate-950 max-md:justify-center md:flex-col md:border-r-2 md:py-10">
         <div
-          onClick={() => setActive('add-product')}
-          className={`rounded-md bg-slate-200 p-3 transition-all hover:text-rose-500 dark:bg-slate-700 ${active === 'add-product' && 'text-rose-500'}`}
+          onClick={() => setActive('/add-product')}
+          className={`rounded-md bg-slate-200 p-3 transition-all hover:text-rose-500 dark:bg-slate-700 ${active === '/add-product' && 'text-rose-500'}`}
         >
           <Link to="add-product" className="flex items-center gap-2">
             <HiShoppingCart size={24} />
@@ -28,8 +28,8 @@ function AdminPanel() {
           </Link>
         </div>
         <div
-          onClick={() => setActive('list-products')}
-          className={`rounded-md bg-slate-200 p-3 transition-all hover:text-rose-500 dark:bg-slate-700 ${active === 'list-products' && 'text-rose-500'}`}
+          onClick={() => setActive('/list-products')}
+          className={`rounded-md bg-slate-200 p-3 transition-all hover:text-rose-500 dark:bg-slate-700 ${active === '/list-products' && 'text-rose-500'}`}
         >
           <Link to="list-products" className="flex items-center gap-2">
             <HiServerStack size={24} />
