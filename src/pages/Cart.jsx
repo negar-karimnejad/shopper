@@ -20,7 +20,7 @@ function Cart() {
 
   if (state?.length === 0)
     return (
-      <div className="container flex h-[12rem] items-center justify-center pt-10 text-xl">
+      <div className="container flex h-[14rem] items-center justify-center pt-10 text-xl max-sm:h-[22rem]">
         <p className="border-b border-slate-500 p-3">Your cart is empty 🙁</p>
       </div>
     );

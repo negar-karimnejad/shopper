@@ -42,7 +42,6 @@ function App() {
                   padding: '16px 24px',
                   backgroundColor: '#37445c',
                   color: 'white',
-                  boxShadow: '',
                 },
               }}
             />
