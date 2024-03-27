@@ -48,15 +48,16 @@ const reducer = (state, action) => {
 const ProductProvider = ({ children }) => {
   const [{ products, product }, dispatch] = useReducer(reducer, initialState);
 
+  const getProducts = async () => {
+    try {
+      let { data: products } = await supabase.from('products').select('*');
+      dispatch({ type: 'get_Products', payload: products });
+    } catch (error) {
+      console.error('Error getting products:', error.message);
+    }
+  };
+
   useEffect(() => {
-    const getProducts = async () => {
-      try {
-        let { data: products } = await supabase.from('products').select('*');
-        dispatch({ type: 'get_Products', payload: products });
-      } catch (error) {
-        console.error('Error getting products:', error.message);
-      }
-    };
     getProducts();
   }, []);
 
@@ -71,9 +72,19 @@ const ProductProvider = ({ children }) => {
 
   const addProduct = async (newProduct) => {
     try {
-      await supabase.from('products').insert(newProduct).select();
-      dispatch({ type: 'add_Product', payload: newProduct });
+      const { data, error } = await supabase
+        .from('products')
+        .insert(newProduct)
+        .single();
+      if (error) {
+        throw error;
+      }
+
+      toast.success('Product added to list');
+      dispatch({ type: 'add_Product', payload: data });
+      getProducts();
     } catch (error) {
+      toast.error('Product could not be added');
       console.error('Error adding product:', error.message);
     }
   };
@@ -92,6 +103,7 @@ const ProductProvider = ({ children }) => {
       const filteredProducts = products.filter((item) => item.id !== id);
 
       dispatch({ type: 'remove_Product', payload: filteredProducts });
+      getProducts();
     } catch (error) {
       console.error('Error adding product:', error.message);
     }

@@ -1,36 +1,11 @@
-import { useState } from 'react';
-import { HiTrash } from 'react-icons/hi2';
-import Button from '../components/Button';
+import ListProduct from '../components/ListProduct';
 import Spinner from '../components/Spinner';
 import { useProduct } from '../context/ProductContext';
-import { formatCurrency } from '../utilities/formatCurrency';
 
 const heads = ['Product', 'Title', 'Price', 'Category', 'Remove'];
 
-const Td = ({ children, style }) => {
-  return (
-    <td
-      className={`${style} px-6 py-4 text-sm font-light text-gray-900 dark:text-slate-100`}
-    >
-      {children}
-    </td>
-  );
-};
-
 function ListProducts() {
-  const { products, removeProduct } = useProduct();
-  const [loading, setLoading] = useState(false);
-
-  const removeHandler = async (id) => {
-    setLoading(true);
-    try {
-      await removeProduct(id);
-    } catch (error) {
-      console.error('Error while removing product:', error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { products } = useProduct();
 
   if (!products.length) return <Spinner title="Loading..." />;
 
@@ -60,38 +35,7 @@ function ListProducts() {
                   </thead>
                   <tbody>
                     {products.map((product) => (
-                      <tr
-                        key={product.id}
-                        className="border-b bg-white dark:bg-slate-900"
-                      >
-                        <td className="whitespace-nowrap px-6 py-4 text-sm font-medium text-gray-900">
-                          <img
-                            className="h-14 w-14 object-contain"
-                            src={product.image}
-                            alt={product.title}
-                          />
-                        </td>
-                        <Td>{product.title}</Td>
-                        <Td style="whitespace-nowrap">
-                          {formatCurrency(product.price)}
-                        </Td>
-
-                        <Td style="whitespace-nowrap">{product.category}</Td>
-                        <Td style="whitespace-nowrap">
-                          <Button
-                            variant="secondary"
-                            disabled={loading}
-                            type="button"
-                            onClick={() => removeHandler(product.id)}
-                          >
-                            {loading ? (
-                              'Removing...'
-                            ) : (
-                              <HiTrash className="cursor-pointer transition-all" />
-                            )}
-                          </Button>
-                        </Td>
-                      </tr>
+                      <ListProduct key={product.id} product={product} />
                     ))}
                   </tbody>
                 </table>
