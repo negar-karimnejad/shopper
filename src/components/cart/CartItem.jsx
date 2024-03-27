@@ -16,7 +16,7 @@ const Td = ({ children, style }) => {
 
 export default function Cartproduct({ product, item }) {
   const { removeFromCart, decrementQuantity, incrementQuantity } = useCart();
-
+  console.log(item);
   if (!product) return <Spinner title="Loading..." />;
 
   return (
@@ -33,6 +33,7 @@ export default function Cartproduct({ product, item }) {
       <Td>
         <Link to={`/product/${product.id}`}>{product.title}</Link>
       </Td>
+      <Td style="whitespace-nowrap uppercase">{product?.size}</Td>
       <Td style="whitespace-nowrap">{formatCurrency(product?.price)}</Td>
       <Td style="whitespace-nowrap flex items-center pt-5">
         <div

@@ -2,7 +2,15 @@ import { useCart } from '../../context/CartContext';
 import Spinner from '../Spinner';
 import CartItem from './CartItem';
 
-const heads = ['Product', 'Title', 'Price', 'Quantity', 'Total', 'Remove'];
+const heads = [
+  'Product',
+  'Title',
+  'Size',
+  'Price',
+  'Quantity',
+  'Total',
+  'Remove',
+];
 
 function CartItems() {
   const { state } = useCart();

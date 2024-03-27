@@ -120,6 +120,7 @@ const CartProvider = ({ children }) => {
       console.error(error);
       throw new Error('Product could not be deleted');
     }
+
     const filteredCart = state.filter((item) => item.id !== id);
     dispatch({ type: 'remove_from_cart', payload: filteredCart });
     return data;
@@ -155,7 +156,7 @@ const CartProvider = ({ children }) => {
       throw updateError;
     }
 
-    dispatch({ type: 'remove_from_cart', payload: updatedData });
+    // dispatch({ type: 'update_cart', payload: updatedData });
     getUserCart();
   };
 
@@ -179,7 +180,7 @@ const CartProvider = ({ children }) => {
       throw updateError;
     }
 
-    dispatch({ type: 'remove_from_cart', payload: updatedData });
+    // dispatch({ type: 'update_cart', payload: updatedData });
     getUserCart();
   };
 
