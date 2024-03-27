@@ -1,6 +1,25 @@
+import { useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 
 function Conatct() {
+  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    if (!username || !email || !message) return;
+    const uppercaseUsername = username.toUpperCase();
+
+    toast.success(
+      `Dear ${uppercaseUsername}, your message has been sent successfully `,
+    );
+    setUsername('');
+    setEmail('');
+    setMessage('');
+  };
+
   return (
     <div className="container pt-10">
       <h1 className="mb-10 text-center text-3xl font-bold text-rose-500">
@@ -33,8 +52,8 @@ function Conatct() {
           </div>
           <div>
             <form
-              onSubmit={(e) => e.preventDefault()}
-              className="mb-4 rounded bg-white px-8 pb-8 pt-6 shadow-md border"
+              onSubmit={submitHandler}
+              className="mb-4 rounded border bg-white px-8 pb-8 pt-6 shadow-md"
             >
               <div className="mb-4">
                 <label
@@ -44,11 +63,14 @@ function Conatct() {
                   Your Name
                 </label>
                 <input
+                  required
                   type="text"
                   id="name"
                   name="name"
                   className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                   placeholder="Enter your name"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
               <div className="mb-4">
@@ -59,11 +81,14 @@ function Conatct() {
                   Your Email
                 </label>
                 <input
+                  required
                   type="email"
                   id="email"
                   name="email"
                   className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                   placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
               <div className="mb-6">
@@ -74,11 +99,14 @@ function Conatct() {
                   Message
                 </label>
                 <textarea
+                  required
                   id="message"
                   name="message"
                   className="focus:shadow-outline w-full appearance-none rounded border px-3 py-2 leading-tight text-gray-700 shadow focus:outline-none"
                   rows="5"
                   placeholder="Enter your message"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
                 ></textarea>
               </div>
               <div className="flex items-center justify-between">

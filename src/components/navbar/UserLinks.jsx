@@ -4,6 +4,7 @@ import Button from '../Button';
 import DarkModeButton from '../DarkModeButton';
 import MobileMenu from './MobileMenu';
 import NavShoppingCartIcon from './NavShoppingCartIcon';
+import toast from 'react-hot-toast';
 
 function UserLinks() {
   const { signOut, user } = useAuth();
@@ -11,11 +12,12 @@ function UserLinks() {
   const handleSignOut = async () => {
     try {
       await signOut();
+      toast.success('You logged out successfully');
     } catch (error) {
       console.error('Error signing out:', error.message);
     }
   };
-  
+
   return (
     <>
       <div className="hidden items-center gap-4 lg:flex">

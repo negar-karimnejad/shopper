@@ -4,10 +4,12 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import { useAuth } from '../context/AuthContext';
 import Spinner from '../components/Spinner';
+import toast from 'react-hot-toast';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [check, setCheck] = useState(false);
 
   const navigate = useNavigate();
 
@@ -16,7 +18,13 @@ function Login() {
   const submitHandler = (e) => {
     e.preventDefault();
     if ((!email, !password)) return;
+    if (!check) {
+      toast.error('Accept Privacy Policy checkbox');
+      return;
+    }
     signIn(email, password);
+    toast.success('You logged in successfully');
+
     setEmail('');
     setPassword('');
   };
@@ -35,7 +43,7 @@ function Login() {
             disabled={loading}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            type="text"
+            type="email"
             placeholder="Email address"
           />
           <Input
@@ -55,8 +63,12 @@ function Login() {
             Click here
           </Link>
         </p>
-        <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-200">
-          <input type="checkbox" id="policy" />
+        <div className="flex gap-2 text-sm text-slate-600 dark:text-slate-200">
+          <input
+            type="checkbox"
+            id="policy"
+            onChange={(e) => setCheck(e.target.checked)}
+          />
           <label htmlFor="policy">
             By countinuing i agree to the terms of use & privacy policy
           </label>

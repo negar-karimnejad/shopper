@@ -4,11 +4,14 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 import Spinner from '../components/Spinner';
 import { useAuth } from '../context/AuthContext';
+import toast from 'react-hot-toast';
 
 function Register() {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [check, setCheck] = useState(false);
+
   const navigate = useNavigate();
 
   const { signUp, user, loading } = useAuth();
@@ -16,7 +19,12 @@ function Register() {
   const submitHandler = (e) => {
     e.preventDefault();
     if ((!username, !email, !password)) return;
+    if (!check) {
+      toast.error('Accept Privacy Policy checkbox');
+      return;
+    }
     signUp(username, email, password);
+    toast.success('You Registered successfully');
     setUsername('');
     setEmail('');
     setPassword('');
@@ -41,7 +49,7 @@ function Register() {
             onChange={(e) => setUsername(e.target.value)}
           />
           <Input
-            type="text"
+            type="email"
             placeholder="Email address"
             disabled={loading}
             value={email}
@@ -65,7 +73,11 @@ function Register() {
           </Link>
         </p>
         <div className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-200">
-          <input type="checkbox" id="policy" />
+          <input
+            type="checkbox"
+            id="policy"
+            onChange={(e) => setCheck(e.target.checked)}
+          />
           <label htmlFor="policy">
             By countinuing i agree to the terms of use & privacy policy
           </label>
