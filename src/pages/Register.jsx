@@ -39,7 +39,7 @@ function Register() {
   if (user?.session) return <Spinner title="Redirecting..." />;
 
   return (
-    <div className="flex items-center justify-center bg-rose-50 py-10 dark:bg-slate-900 ">
+    <div className="flex items-center justify-center bg-rose-50 px-5 py-10 dark:bg-slate-900 sm:px-0">
       <div className="rounded-md bg-white p-5 py-7 shadow dark:bg-slate-700">
         <h2 className="mb-5 text-3xl">Sign Up</h2>
         <form className="flex flex-col gap-5" onSubmit={submitHandler}>

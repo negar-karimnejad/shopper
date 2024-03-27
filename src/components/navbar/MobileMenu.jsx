@@ -5,15 +5,31 @@ import Button from '../Button';
 import DarkModeButton from '../DarkModeButton';
 import Divide from '../Divide';
 import NavLinks from './NavLinks';
+import { useAuth } from '../../context/AuthContext';
+import toast from 'react-hot-toast';
+import NavShoppingCartIcon from './NavShoppingCartIcon';
 
 function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+  const { signOut, user } = useAuth();
 
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      toast.success('You logged out successfully');
+    } catch (error) {
+      console.error('Error signing out:', error.message);
+    }
+  };
   return (
     <div className="hidden cursor-pointer transition-all duration-500 max-lg:block">
-      <div onClick={() => setIsOpen((prev) => !prev)}>
-        {isOpen ? <HiXMark size={30} /> : <HiBars3 size={35} />}
+      <div className="flex items-center gap-4">
+        <NavShoppingCartIcon />
+
+        <div onClick={() => setIsOpen((prev) => !prev)}>
+          {isOpen ? <HiXMark size={30} /> : <HiBars3 size={35} />}
+        </div>
       </div>
 
       {isOpen && (
@@ -38,10 +54,19 @@ function MobileMenu() {
             className="flex flex-col gap-2"
             onClick={() => setIsOpen(false)}
           >
-            <Button onClick={() => navigate('/login')}>Login</Button>
-            <Button variant="secondary" onClick={() => navigate('/register')}>
-              Register
-            </Button>
+            {user ? (
+              <Button onClick={handleSignOut}>Logout</Button>
+            ) : (
+              <>
+                <Button onClick={() => navigate('/login')}>Login</Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => navigate('/register')}
+                >
+                  Register
+                </Button>
+              </>
+            )}
           </footer>
         </div>
       )}

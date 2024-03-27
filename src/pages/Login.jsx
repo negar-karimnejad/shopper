@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Input from '../components/Input';
-import { useAuth } from '../context/AuthContext';
 import Spinner from '../components/Spinner';
-import toast from 'react-hot-toast';
+import { useAuth } from '../context/AuthContext';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -36,7 +36,7 @@ function Login() {
 
   if (user?.session) return <Spinner title="Redirecting..." />;
   return (
-    <div className="flex items-center justify-center bg-rose-50 py-20 dark:bg-slate-900 ">
+    <div className="flex items-center justify-center bg-rose-50 px-5 py-20 dark:bg-slate-900 sm:px-0">
       <div className="rounded-md bg-white p-5 py-7 shadow dark:bg-slate-700">
         <h2 className="mb-5 text-3xl">Login</h2>
         <form className="flex flex-col gap-5" onSubmit={submitHandler}>
