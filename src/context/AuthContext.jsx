@@ -1,5 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useReducer } from 'react';
+import toast from 'react-hot-toast';
 import { useLocalStorageState } from '../hooks/useLocalStorage';
 import supabase from '../services/supabase';
 
@@ -48,6 +49,7 @@ function AuthProvider({ children }) {
 
   const signUp = async (username, email, password) => {
     dispatch({ type: 'set_loading', payload: true });
+    dispatch({ type: 'set_error', payload: null });
     try {
       let { data: user, error } = await supabase.auth.signUp({
         username,
@@ -58,21 +60,30 @@ function AuthProvider({ children }) {
       if (error) {
         dispatch({ type: 'set_loading', payload: false });
         dispatch({ type: 'set_error', payload: error.message });
+        toast.error(error.message);
         throw error;
       }
+
       setStoredUser(user);
       dispatch({ type: 'set_user', payload: user });
       dispatch({ type: 'set_loading', payload: false });
+      dispatch({ type: 'set_error', payload: null });
+      toast.success('You Registered Successfully');
       return user;
     } catch (error) {
       console.error('Error signing up:', error.message);
       dispatch({ type: 'set_error', payload: error.message });
       throw error;
+    } finally {
+      dispatch({ type: 'set_loading', payload: false });
+      dispatch({ type: 'set_error', payload: null });
     }
   };
 
   const signIn = async (email, password) => {
     dispatch({ type: 'set_loading', payload: true });
+    dispatch({ type: 'set_error', payload: null });
+
     try {
       let { data: user, error } = await supabase.auth.signInWithPassword({
         email,
@@ -82,16 +93,22 @@ function AuthProvider({ children }) {
       if (error) {
         dispatch({ type: 'set_loading', payload: false });
         dispatch({ type: 'set_error', payload: error.message });
+        toast.error(error.message);
         throw error;
       }
       setStoredUser(user);
       dispatch({ type: 'set_user', payload: user });
       dispatch({ type: 'set_loading', payload: false });
+      dispatch({ type: 'set_error', payload: null });
+      toast.success('You Logged in Successfully');
       return user;
     } catch (error) {
       console.error('Error signing in:', error.message);
       dispatch({ type: 'set_error', payload: error.message });
       throw error;
+    } finally {
+      dispatch({ type: 'set_loading', payload: false });
+      dispatch({ type: 'set_error', payload: null });
     }
   };
 

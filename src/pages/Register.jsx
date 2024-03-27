@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
 import Input from '../components/Input';
 import Spinner from '../components/Spinner';
 import { useAuth } from '../context/AuthContext';
-import toast from 'react-hot-toast';
 
 function Register() {
   const [username, setUsername] = useState('');
@@ -23,11 +23,13 @@ function Register() {
       toast.error('Accept Privacy Policy checkbox');
       return;
     }
+
     signUp(username, email, password);
-    toast.success('You Registered successfully');
-    setUsername('');
-    setEmail('');
-    setPassword('');
+    if (user) {
+      setUsername('');
+      setEmail('');
+      setPassword('');
+    }
   };
 
   useEffect(() => {
