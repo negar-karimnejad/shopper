@@ -1,10 +1,9 @@
-
-function ProductsList({children}) {
+function ProductsList({ children }) {
   return (
     <div className="grid gap-x-5 gap-y-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {children}
+      {children}
     </div>
-  )
+  );
 }
 
-export default ProductsList
+export default ProductsList;

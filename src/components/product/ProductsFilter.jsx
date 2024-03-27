@@ -6,7 +6,7 @@ function ProductsFilter({ products }) {
   const navigate = useNavigate();
 
   const [sortBy, setSortBy] = useState(query || '');
-  
+
   useEffect(() => {
     if (sortBy) navigate(`/products/${sortBy}`);
   }, [navigate, sortBy]);

@@ -4,7 +4,7 @@ import ProductsFilter from './ProductsFilter';
 import ProductsList from './ProductsList';
 
 function CollectionSection({ products, banner }) {
-  if (!products.length) return <Spinner title="Loading..."/>;
+  if (!products.length) return <Spinner title="Loading..." />;
 
   return (
     <div className="container pt-10">

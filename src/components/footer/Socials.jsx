@@ -3,7 +3,7 @@ import { FaInstagram, FaPinterest, FaWhatsapp } from 'react-icons/fa';
 const Social = ({ icon }) => {
   return (
     <div
-      className={`cursor-pointer text-2xl text-slate-400 transition-all hover:scale-105 hover:dark:text-slate-50 hover:text-slate-500`}
+      className={`cursor-pointer text-2xl text-slate-400 transition-all hover:scale-105 hover:text-slate-500 hover:dark:text-slate-50`}
     >
       {icon}
     </div>

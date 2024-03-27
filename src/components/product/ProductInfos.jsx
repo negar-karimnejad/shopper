@@ -50,11 +50,10 @@ function ProductInfos() {
       items: [{ ...product, size: productSize }],
       quantity: 1,
     };
-    console.log(product);
+
     try {
       await addToCart(newItem);
       toast.success('Successfully added');
-
     } catch (error) {
       console.error('Error adding item to cart:', error.message);
     } finally {
