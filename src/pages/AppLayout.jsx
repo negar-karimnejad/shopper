@@ -4,10 +4,10 @@ import Navbar from '../components/navbar/Navbar';
 
 function AppLayout() {
   return (
-    <div className="flex h-screen flex-col justify-between font-medium text-slate-700 dark:text-slate-200">
+    <div className="flex h-screen flex-col justify-between bg-white font-medium text-slate-700 dark:bg-slate-900 dark:text-slate-200">
       <div>
         <Navbar />
-        <div className="bg-white dark:bg-slate-900">
+        <div>
           <Outlet />
         </div>
       </div>
