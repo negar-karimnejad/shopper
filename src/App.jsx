@@ -1,5 +1,8 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './context/AuthContext';
+import { CartProvider } from './context/CartContext';
 import { ProductProvider } from './context/ProductContext';
 import AboutUs from './pages/AboutUs';
 import AddProduct from './pages/AddProduct';
@@ -19,9 +22,6 @@ import Product from './pages/Product';
 import Products from './pages/Products';
 import Register from './pages/Register';
 import Women from './pages/Women';
-import { AuthProvider } from './context/AuthContext';
-import { Toaster } from 'react-hot-toast';
-import { CartProvider } from './context/CartContext';
 
 function App() {
   return (

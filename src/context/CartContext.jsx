@@ -8,8 +8,8 @@ import {
   useEffect,
   useReducer,
 } from 'react';
-import { useAuth } from './AuthContext';
 import toast from 'react-hot-toast';
+import { useAuth } from './AuthContext';
 
 export const CartContext = createContext();
 
@@ -151,7 +151,7 @@ const CartProvider = ({ children }) => {
       }
     }
 
-    const { data: updatedData, error: updateError } = await supabase
+    const { error: updateError } = await supabase
       .from('cart')
       .update({ quantity: data[0].quantity - 1 })
       .eq('id', id)
@@ -161,7 +161,6 @@ const CartProvider = ({ children }) => {
       throw updateError;
     }
 
-    // dispatch({ type: 'update_cart', payload: updatedData });
     getUserCart();
   };
 
@@ -175,7 +174,7 @@ const CartProvider = ({ children }) => {
       throw existInCartError;
     }
 
-    const { data: updatedData, error: updateError } = await supabase
+    const { error: updateError } = await supabase
       .from('cart')
       .update({ quantity: data[0].quantity + 1 })
       .eq('id', id)
@@ -185,7 +184,6 @@ const CartProvider = ({ children }) => {
       throw updateError;
     }
 
-    // dispatch({ type: 'update_cart', payload: updatedData });
     getUserCart();
   };
 
