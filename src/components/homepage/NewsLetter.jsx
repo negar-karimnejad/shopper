@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Button from '../Button';
 import toast from 'react-hot-toast';
+import Button from '../Button';
 
 function NewsLetter() {
   const [email, setEmail] = useState('');
@@ -29,7 +29,7 @@ function NewsLetter() {
             >
               Subscribe to our newsletter and stay updated.
             </label>
-            <div className="mt-5 flex rounded-full border-2 bg-white pl-5">
+            <div className="mt-5 flex w-[20.9rem] rounded-full border-2 bg-white pl-5">
               <input
                 className="text-slate-600 outline-none"
                 type="email"
