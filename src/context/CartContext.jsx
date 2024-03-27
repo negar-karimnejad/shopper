@@ -9,6 +9,7 @@ import {
   useReducer,
 } from 'react';
 import { useAuth } from './AuthContext';
+import toast from 'react-hot-toast';
 
 export const CartContext = createContext();
 
@@ -115,9 +116,11 @@ const CartProvider = ({ children }) => {
   // REMOVE ITEM FROM CART
   const removeFromCart = async (id) => {
     const { data, error } = await supabase.from('cart').delete().eq('id', id);
+    toast.success('Successfully removed');
 
     if (error) {
       console.error(error);
+      toast.error('Product could not be deleted');
       throw new Error('Product could not be deleted');
     }
 
@@ -138,6 +141,8 @@ const CartProvider = ({ children }) => {
 
     if (data[0].quantity <= 1) {
       const { error } = await supabase.from('cart').delete().eq('id', id);
+      toast.success('Successfully removed');
+
       getUserCart();
 
       if (error) {

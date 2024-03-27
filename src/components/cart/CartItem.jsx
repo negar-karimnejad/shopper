@@ -16,7 +16,7 @@ const Td = ({ children, style }) => {
 
 export default function Cartproduct({ product, item }) {
   const { removeFromCart, decrementQuantity, incrementQuantity } = useCart();
-  console.log(item);
+
   if (!product) return <Spinner title="Loading..." />;
 
   return (

@@ -18,7 +18,7 @@ function ProductCard({ product }) {
       toast.error('Please Login first to continue');
       return;
     }
-    setLoading(true); 
+    setLoading(true);
 
     const newItem = {
       product_id: product.id,
@@ -29,6 +29,7 @@ function ProductCard({ product }) {
 
     try {
       await addToCart(newItem);
+      toast.success('Successfully added');
     } catch (error) {
       console.error('Error adding item to cart:', error.message);
     } finally {
