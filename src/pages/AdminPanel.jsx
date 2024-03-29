@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { HiServerStack, HiShoppingCart } from 'react-icons/hi2';
-import { Link, Outlet } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import { useAuth } from '../context/AuthContext';
 
