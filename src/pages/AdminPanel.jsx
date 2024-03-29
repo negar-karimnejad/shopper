@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { HiServerStack, HiShoppingCart } from 'react-icons/hi2';
-import { Link, Outlet, redirect } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import { useAuth } from '../context/AuthContext';
 
 function AdminPanel() {
   const pathname = document.location.pathname;
+  const navigate = useNavigate();
   const [active, setActive] = useState(pathname);
   const { user } = useAuth();
 
-  if (!user) {
-    redirect('/login');
-    // return <Spinner title="Redirecting..." />;
+  if (user?.user?.id !== '585190b7-5a1a-42b1-b31a-e1ac4081d994') {
+    navigate('/login');
+    return <Spinner title="Redirecting..." />;
   }
-
-  if (!user) return <Spinner title="Redirecting..." />;
 
   return (
     <div className="flex bg-slate-100 max-md:flex-col">
