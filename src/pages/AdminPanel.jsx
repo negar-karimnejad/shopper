@@ -11,6 +11,7 @@ function AdminPanel() {
 
   if (!user) {
     redirect('/login');
+    // return <Spinner title="Redirecting..." />;
   }
 
   if (!user) return <Spinner title="Redirecting..." />;

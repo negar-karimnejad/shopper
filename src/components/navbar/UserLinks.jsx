@@ -5,6 +5,7 @@ import DarkModeButton from '../DarkModeButton';
 import MobileMenu from './MobileMenu';
 import NavShoppingCartIcon from './NavShoppingCartIcon';
 import toast from 'react-hot-toast';
+import AdminPanelIcon from './AdminPanelIcon';
 
 function UserLinks() {
   const { signOut, user } = useAuth();
@@ -17,11 +18,11 @@ function UserLinks() {
       console.error('Error signing out:', error.message);
     }
   };
-
   return (
     <>
       <div className="hidden items-center gap-4 lg:flex">
         <DarkModeButton />
+        <AdminPanelIcon />
         <NavShoppingCartIcon />
         {user?.session ? (
           <Button onClick={handleSignOut}>Logout</Button>
